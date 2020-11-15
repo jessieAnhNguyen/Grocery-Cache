@@ -2,7 +2,7 @@
 
 
 # exclude everything
-somefolder/*
+venv/*
 
 # exception to the rule
-!somefolder/.gitkeep 
+!venv/.gitkeep 
