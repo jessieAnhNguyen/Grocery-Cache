@@ -8,8 +8,8 @@
 <ul id="listOfItems">
     {%for items in itemList%}
     <li>{{items.item_name}}
-        <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>
-        <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+        <a href="/update/{{items.item_ID}}" class="btn btn-outline-secondary btn-sm">Update</a>
+        <a href="/delete/{{items.item_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
     </li>
     {%endfor%}
 </ul>

@@ -33,9 +33,9 @@ class Main_List(db.Model):
 
 app.config["SECRET_KEY"] = "Where do we go from here"
 
-
+# Create the form
 class IndividualItemForm(FlaskForm):
-    item_Name = StringField("Item", validators=[DataRequired()])
+    item_name = StringField("Item", validators=[DataRequired()])
     category = StringField("Category")
     budget = StringField("Budget")
     urgency_level = StringField("Urgency")
@@ -53,12 +53,48 @@ def internal_server_error(e):
     return render_template("500.html"), 500
 
 
+@app.route("/update/<int:id>", methods=["GET", "POST"])
+def update(id):
+    # get the item from the database
+    item_to_update = Main_List.query.get_or_404(id)
+
+    if request.method == "POST":
+        # get the updated values
+        item_to_update.item_name = request.form["item_name"]
+        item_to_update.category = request.form["category"]
+        item_to_update.budget = request.form["budget"]
+        item_to_update.urgency_level = request.form["urgency_level"]
+        item_to_update.notes = request.form["notes"]
+        try:
+            # update to the database
+            db.session.commit()
+            return redirect(url_for("index"))
+        except:
+            return "There was a problem updating the recipe"
+
+    else:
+        return render_template("update.html", item_to_update=item_to_update)
+
+
+@app.route("/delete/<int:id>", methods=["GET"])
+def delete(id):
+    item_to_delete = Main_List.query.get_or_404(id)
+    try:
+        db.session.delete(item_to_delete)
+        db.session.commit()
+        flash("You successfully deleted the ingredient", "success")
+        return redirect(url_for("index"))
+    except:
+        flash("There was an error deleting the ingredient", "error")
+        return "There was a problem updating the recipe"
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     mainForm = IndividualItemForm()
 
     if request.method == "POST":
-        item_name = request.form["item_Name"]
+        item_name = request.form["item_name"]
         category = request.form["category"]
         budget = request.form["budget"]
         urgency_level = request.form["urgency_level"]
