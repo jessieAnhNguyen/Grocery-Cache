@@ -4,5 +4,3 @@
 # exclude everything
 venv/*
 
-# exception to the rule
-!venv/.gitkeep 

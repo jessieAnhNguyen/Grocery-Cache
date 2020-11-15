@@ -1,116 +1,11 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Nepali momo{% endblock %}
+{% block title %}Grocery list{% endblock %}
 
 {% block page_content %}
 <div class="container">
-    <section class="mainImage">
-        <h1>Nepali Mo:M</h1>
-    </section>
-
-    <div class="container">
-        {% for category, message in get_flashed_messages(with_categories=true) %} {%
-        if category == 'success' %}
-        <div class="alert alert-success" role="alert">{{ message }}</div>
-        {% endif %} {% if category == 'error' %}
-        <div class="alert alert-danger" role="alert">{{ message }}</div>
-        {% endif %} {% endfor %}
-    </div>
-
-    <section class="description">
-        <p>
-            If you ever want to taste what best Nepal has to offer, you need not look further than one of the most
-            famous cuisine found in every corner of the country. </p>
-        <p>Mo:mo (म:म:) has made itself the unofficial official food of Nepal with different styles of preparing it
-            and exotic flavours from each place you try it.</p>
-        <p>Here, we will try and give you a general way of preparing the famous steamed dumplings from Nepal but
-            what's special about this dish is that you can change it to your liking to make it fit perfectly to what
-            you desire.
-        </p>
-    </section>
-    <section class="ingredients">
-        <h2>Ingredients
-            <!-- <button type="button" id="showIngredients" value="displayIngredients" class="btn btn-info">+</button>
-            <button type="button" id="hideIngredients" value="removeIngredients" class="btn btn-danger">-</button> -->
-
-            <!-- <button type="button"  class="add">+</button> -->
-            <!-- <button type="button"  class="remove">-</button> -->
-        </h2>
-        <ul id="listOfIngredients">
-            {%for ingredient in ingredientList%}
-            <li>{{ingredient.name}}
-                <a href="/assignment10/update/{{ingredient.id}}" class="btn btn-outline-secondary btn-sm">Update</a>
-                <a href="/assignment10/delete/{{ingredient.id}}" class="btn btn-outline-danger btn-sm">Delete</a>
-            </li>
-            {%endfor%}
-        </ul>
-        <!-- <form method="POST" action="">
-            <label for="newIngredient">Enter an ingredient:</label>
-            <input type="text" name="elementToAdd" id="newIngredient" />
-            <input type="submit" value="Add" id="addButton" />
-        </form> -->
-        {{ wtf.quick_form(form) }}
-    </section>
-    <section class="directions">
-        <h2>Steps
-            <!-- <button type="button" id="showInstruction" value="displayInstruction" class="btn btn-info">+</button>
-            <button type="button" id="hideInstructions" value="removeInstructions" class="btn btn-danger">-</button> -->
-        </h2>
-
-        <ol id="listOfInstructions">
-            <li>Mix together the flour and 1 1/2 cups room temperature water in a bowl. Knead the dough well until
-                it is medium-firm and flexible. Cover and let rest for 1 hour.</li>
-            <li>Heat butter and heat minced garlic and minced peeled ginger in the melter butter</li>
-            <li>Mix the butter, garlic and ginger with the meat</li>
-            <li>Mix onions, cilantro, salt, red chilly powder, cumin powder, ground cumin and oil with the meat in a
-                bowl</li>
-            <li>To make the wrappers: Break off 1/2 ounce of dough and forming it into a ball. Place the ball on a
-                flat surface and roll it into a 4-inch round with a rolling pin. Repeat with the remaining dough.
-            </li>
-            <li>Spray a steamer pan with cooking spray.</li>
-            <li>Place a tablespoon of the chicken filling in the middle of a wrapper. Holding the wrapper in your
-                left hand. Use your right thumb and index finger to start pinching the edges of the wrapper
-                together. Pinch and fold until the edges of the circle close up like a little satchel. Place the
-                momo in the prepared steamer pan. Repeat with remaining wrappers and filling.</li>
-            <li>Fill the steamer pot halfway with water and bring to a boil. Set the steamer pan with the momos on
-                top of the pot and cover with a tight lid. Steam the momos until cooked, 8 to 9 minutes.</li>
-        </ol>
-
-        <!-- <form method="POST" action="">
-            <label for="newInstruction">Enter an instruction:</label>
-            <input type="text" name="instructionToAdd" id="newInstruction" />
-            <input type="submit" value="Add" id="addIns" />
-        </form> -->
-
-    </section>
-    <section class="video">
-        <h2>Video Tutorial</h2>
-        <div class="actualVideo">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/qPH5ITVSjDg"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-        </div>
-    </section>
-
-    <section class="learnMore">
-        <h2>Learn More about the recipe</h2>
-        <div class="actualVideo">
-            Wanna Learn more about momo recipe and other food? <a
-                href="https://www.foodnetwork.com/recipes/nepali-momo-4635126">Click Here</a>
-        </div>
-    </section>
-
-
-
-    <section class="footer">
-        <div class="endingText">
-            Made By Aman Shrestha <br />
-            Recipe from <a href="https://www.foodnetwork.com/recipes/nepali-momo-4635126">Food
-                Network</a><br />
-        </div>
-
-    </section>
+    {{ wtf.quick_form(form) }}
 </div>
 
 
