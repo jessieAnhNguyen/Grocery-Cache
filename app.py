@@ -36,10 +36,10 @@ app.config["SECRET_KEY"] = "Where do we go from here"
 
 class IndividualItemForm(FlaskForm):
     item_Name = StringField("Item", validators=[DataRequired()])
-    category = StringField("Category", validators=[DataRequired()])
-    budget = StringField("Budget", validators=[DataRequired()])
-    urgency_level = StringField("Urgency", validators=[DataRequired()])
-    notes = StringField("Notes", validators=[DataRequired()])
+    category = StringField("Category")
+    budget = StringField("Budget")
+    urgency_level = StringField("Urgency")
+    notes = StringField("Notes")
     submit = SubmitField("Submit")
 
 
@@ -53,8 +53,33 @@ def internal_server_error(e):
     return render_template("500.html"), 500
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
     mainForm = IndividualItemForm()
 
-    return render_template("index.html", form=mainForm)
+    if request.method == "POST":
+        item_name = request.form["item_Name"]
+        category = request.form["category"]
+        budget = request.form["budget"]
+        urgency_level = request.form["urgency_level"]
+        notes = request.form["notes"]
+
+        new_item = Main_List(
+            item_name=item_name,
+            category=category,
+            budget=budget,
+            urgency_level=urgency_level,
+            notes=notes,
+        )
+
+        # Push to Database
+        try:
+            db.session.add(new_item)
+            db.session.commit()
+            return redirect(url_for("index"))
+        except:
+            return "Error"
+
+    else:
+        itemList = Main_List.query
+        return render_template("index.html", form=mainForm, itemList=itemList)

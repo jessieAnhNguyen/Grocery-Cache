@@ -4,6 +4,15 @@
 {% block title %}Grocery list{% endblock %}
 
 {% block page_content %}
+
+<ul id="listOfItems">
+    {%for items in itemList%}
+    <li>{{items.item_name}}
+        <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>
+        <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+    </li>
+    {%endfor%}
+</ul>
 <div class="container">
     {{ wtf.quick_form(form) }}
 </div>
