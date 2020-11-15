@@ -1,2 +1,8 @@
 .DS_Store
-venv/*
+
+
+# exclude everything
+somefolder/*
+
+# exception to the rule
+!somefolder/.gitkeep 
