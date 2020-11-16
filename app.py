@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms import StringField, SubmitField, FloatField, IntegerField
+from wtforms.validators import DataRequired, Length, NumberRange
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -17,14 +17,14 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///grocerycache.db"
 db = SQLAlchemy(app)
 
 
-# Create db modal
+# Create db model
 class Main_List(db.Model):
     item_ID = db.Column(db.Integer, primary_key=True)
-    item_name = db.Column(db.String(200), nullable=False)
-    category = db.Column(db.String(200), nullable=True)
-    budget = db.Column(db.String(200), nullable=True)
-    urgency_level = db.Column(db.String(200), nullable=True)
-    notes = db.Column(db.String(400), nullable=True)
+    item_name = db.Column(db.String(), nullable=False)
+    category = db.Column(db.String(), nullable=True)
+    budget = db.Column(db.Float, nullable=True)
+    urgency_level = db.Column(db.Integer, nullable=True)
+    notes = db.Column(db.String(), nullable=True)
 
     # Create a funcion to return a string when we add something
     def __repr__(self):
@@ -35,11 +35,18 @@ app.config["SECRET_KEY"] = "Where do we go from here"
 
 # Create the form
 class IndividualItemForm(FlaskForm):
-    item_name = StringField("Item", validators=[DataRequired()])
-    category = StringField("Category")
-    budget = StringField("Budget")
-    urgency_level = StringField("Urgency")
-    notes = StringField("Notes")
+    item_name = StringField("Item Name", validators=[
+        DataRequired(),
+        Length(max=200, message="Item name must be less than 200 characters"),
+    ])
+    category = StringField("Category", validators=[
+        Length(max=200, message="Category must be less than 200 characters"),
+    ])
+    budget = FloatField("Budget (in USD)")
+    urgency_level = IntegerField("Urgency Level", validators =[NumberRange(min=1, max=5, message="Urgency level must be between 1-5")])
+    notes = StringField("Other notes", validators=[
+        Length(max=500, message="Notes must be less than 500 characters"),
+    ])
     submit = SubmitField("Submit")
 
 
@@ -52,7 +59,7 @@ def page_not_found(e):
 def internal_server_error(e):
     return render_template("500.html"), 500
 
-
+# Update an item
 @app.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
     # get the item from the database
@@ -70,12 +77,12 @@ def update(id):
             db.session.commit()
             return redirect(url_for("index"))
         except:
-            return "There was a problem updating the recipe"
+            return "There was a problem updating the grocery item"
 
     else:
         return render_template("update.html", item_to_update=item_to_update)
 
-
+# TODO: write the delete an item function
 @app.route("/delete/<int:id>", methods=["GET"])
 def delete(id):
     item_to_delete = Main_List.query.get_or_404(id)
@@ -88,7 +95,7 @@ def delete(id):
         flash("There was an error deleting the ingredient", "error")
         return "There was a problem updating the recipe"
 
-
+# Read the main list
 @app.route("/", methods=["GET", "POST"])
 def index():
     mainForm = IndividualItemForm()
