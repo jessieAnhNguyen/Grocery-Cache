@@ -1,15 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, FloatField, IntegerField
-from wtforms.validators import DataRequired, Length, NumberRange
+from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
+
+from forms import IndividualItemForm
 
 
 app = Flask(__name__)
 application = app
 
 bootstrap = Bootstrap(app)
+moment = Moment(app)
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///grocerycache.db"
@@ -33,22 +35,6 @@ class Main_List(db.Model):
 
 app.config["SECRET_KEY"] = "Where do we go from here"
 
-# Create the form
-class IndividualItemForm(FlaskForm):
-    item_name = StringField("Item Name", validators=[
-        DataRequired(),
-        Length(max=200, message="Item name must be less than 200 characters"),
-    ])
-    category = StringField("Category", validators=[
-        Length(max=200, message="Category must be less than 200 characters"),
-    ])
-    budget = FloatField("Budget (in USD)")
-    urgency_level = IntegerField("Urgency Level", validators =[NumberRange(min=1, max=5, message="Urgency level must be between 1-5")])
-    notes = StringField("Other notes", validators=[
-        Length(max=500, message="Notes must be less than 500 characters"),
-    ])
-    submit = SubmitField("Submit")
-
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -60,29 +46,36 @@ def internal_server_error(e):
     return render_template("500.html"), 500
 
 # Update an item
+
+
 @app.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
     # get the item from the database
     item_to_update = Main_List.query.get_or_404(id)
-
+    mainForm = IndividualItemForm()
     if request.method == "POST":
-        # get the updated values
-        item_to_update.item_name = request.form["item_name"]
-        item_to_update.category = request.form["category"]
-        item_to_update.budget = request.form["budget"]
-        item_to_update.urgency_level = request.form["urgency_level"]
-        item_to_update.notes = request.form["notes"]
-        try:
-            # update to the database
-            db.session.commit()
-            return redirect(url_for("index"))
-        except:
-            return "There was a problem updating the grocery item"
+        if mainForm.is_submitted() and mainForm.validate():
+            # get the updated values
+            item_to_update.item_name = request.form["item_name"]
+            item_to_update.category = request.form["category"]
+            item_to_update.budget = request.form["budget"]
+            item_to_update.urgency_level = request.form["urgency_level"]
+            item_to_update.notes = request.form["notes"]
+            try:
+                # update to the database
+                db.session.commit()
+                return redirect(url_for("index"))
+            except:
+                return "There was a problem updating the grocery item"
+        else:
+            return render_template("update.html", form=mainForm, item_to_update=item_to_update)
 
     else:
-        return render_template("update.html", item_to_update=item_to_update)
+        return render_template("update.html", form=mainForm, item_to_update=item_to_update)
 
 # TODO: write the delete an item function
+
+
 @app.route("/delete/<int:id>", methods=["GET"])
 def delete(id):
     item_to_delete = Main_List.query.get_or_404(id)
@@ -96,32 +89,38 @@ def delete(id):
         return "There was a problem updating the recipe"
 
 # Read the main list
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     mainForm = IndividualItemForm()
 
     if request.method == "POST":
-        item_name = request.form["item_name"]
-        category = request.form["category"]
-        budget = request.form["budget"]
-        urgency_level = request.form["urgency_level"]
-        notes = request.form["notes"]
+        if mainForm.is_submitted() and mainForm.validate():
+            item_name = request.form["item_name"]
+            category = request.form["category"]
+            budget = request.form["budget"]
+            urgency_level = request.form["urgency_level"]
+            notes = request.form["notes"]
 
-        new_item = Main_List(
-            item_name=item_name,
-            category=category,
-            budget=budget,
-            urgency_level=urgency_level,
-            notes=notes,
-        )
+            new_item = Main_List(
+                item_name=item_name,
+                category=category,
+                budget=budget,
+                urgency_level=urgency_level,
+                notes=notes,
+            )
 
-        # Push to Database
-        try:
-            db.session.add(new_item)
-            db.session.commit()
-            return redirect(url_for("index"))
-        except:
-            return "Error"
+            # Push to Database
+            try:
+                db.session.add(new_item)
+                db.session.commit()
+                return redirect(url_for("index"))
+            except:
+                return "Error"
+        else:
+            itemList = Main_List.query
+            return render_template("index.html", form=mainForm, itemList=itemList)
 
     else:
         itemList = Main_List.query
