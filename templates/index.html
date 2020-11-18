@@ -14,7 +14,51 @@
     {%endfor%}
 </ul>
 <div class="container">
-    {{ wtf.quick_form(form) }}
+    <!-- {{ wtf.quick_form(form) }} -->
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        <p>
+          {{form.item_name.label}} <br />
+          {{form.email(size=100)}}
+        </p>
+        <ul>
+          {%for error in form.item_name.errors%}
+          <li style="color: red">{{error}}</li>
+          {%endfor%}
+        </ul>
+        <p>
+          {{form.category.label}} <br />
+          {{form.username(size=50)}}
+        </p>
+    
+        <ul>
+          {%for error in form.username.errors%}
+          <li style="color: red">{{error}}</li>
+          {%endfor%}
+        </ul>
+    
+        <p>
+          {{form.password.label}} <br />
+          {{form.password(size=50)}}
+        </p>
+    
+        <p>
+          {{form.confirmPassword.label}} <br />
+          {{form.confirmPassword(size=50)}}
+        </p>
+        <ul>
+          {%for error in form.password.errors%}
+          <li style="color: red">{{error}}</li>
+          {%endfor%}
+        </ul>
+        <p>{{form.isSubscribe}} {{form.isSubscribe.label}}</p>
+        <ul>
+          {%for error in form.isSubscribe.errors%}
+          <li style="color: red">{{error}}</li>
+          {%endfor%}
+        </ul>
+        <p class="submitButton">{{form.submit()}}</p>
+      </form>
 </div>
 
 
