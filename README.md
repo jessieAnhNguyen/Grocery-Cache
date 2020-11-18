@@ -43,6 +43,18 @@ pip install requirements.txt
 This will install the required dependencies to your virtual environment
 venv has been kept in gitignore to avoid uploading the modules
 
+6. Run the project:
+
+```
+flask run
+```
+
+If you install more dependencies, please update the requirements.txt by
+
+```
+pip freeze > requirements.txt
+```
+
 ## Project Description:
 
 Nowadays, amidst a hectic life, we don’t often have much time to spend on walking around the stores and refreshing our memories on what we need to buy. It is also very frustrating when we forget to buy an item once we have already completed the trip. Moreover, we also want to budget our spending effectively every time we go shopping so that we don’t go over the limit. Thus, it will be convenient if we have an app that can help us keep track of the groceries items we need to shop, as well as the budget limit on each of them. This is where our Grocery Cache app comes in.
