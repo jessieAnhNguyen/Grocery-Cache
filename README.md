@@ -11,6 +11,13 @@ Then switch the environment using
 (MAC) : source venv/bin/activate 
 (Windows) : venv\Scripts\activate
 
+Then do the following to set the app and the dev env
+(MAC) : export FLASK_APP=app.py
+(Windows) : set FLASK_APP=app.py
+
+(MAC) : export FLASK_ENV=development
+(Windows) : set FLASK_ENV=development
+
 Then 
 pip install requirements.txt
 

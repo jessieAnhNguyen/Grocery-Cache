@@ -4,7 +4,52 @@
 {% block title %} Update Recipe{% endblock %}
 {%block content%}
 <div class="container">
-    <form action="/update/{{item_to_update.item_ID}}" Method="POST">
+    <form method="POST" action="/update/{{item_to_update.item_ID}}">
+        {{form.csrf_token}}
+        <p>
+            {{form.item_name.label}}<br />
+            {{form.item_name(value=item_to_update.item_name) }}
+        </p>
+        <ul>
+            {%for error in form.item_name.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.category.label}}<br />
+            {{form.category(value=item_to_update.category)}}
+        </p>
+        <ul>
+            {%for error in form.category.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.budget.label}}<br />
+            {{form.budget(value=item_to_update.budget)}}
+        </p>
+        <ul>
+            {%for error in form.budget.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.urgency_level.label}}<br />
+            {{form.urgency_level(value=item_to_update.urgency_level)}}
+        </p>
+        <ul>
+            {%for error in form.urgency_level.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.notes.label}}<br />
+            {{form.notes(value=item_to_update.notes)}}
+        </p>
+        <p>
+            {{form.submit}}
+        </p>
+        <!-- <form action="/update/{{item_to_update.item_ID}}" Method="POST">
 
         <input placeholder="Item" name="item_name" value="{{item_to_update.item_name }}">
         <input placeholder="Category" name="category" value="{{item_to_update.category}}">
@@ -13,7 +58,7 @@
         <input placeholder="Notes" name="notes" value="{{item_to_update.notes}}">
         <input type="submit" value="Update Recipe" class="btn btn-secondary">
 
-    </form>
+    </form> -->
 </div>
 
 

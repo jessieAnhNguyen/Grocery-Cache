@@ -14,7 +14,54 @@
     {%endfor%}
 </ul>
 <div class="container">
-    {{ wtf.quick_form(form) }}
+    <form method="POST" action="/">
+        {{form.csrf_token}}
+        <p>
+            {{form.item_name.label}}<br />
+            {{form.item_name}}
+        </p>
+        <ul>
+            {%for error in form.item_name.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.category.label}}<br />
+            {{form.category}}
+        </p>
+        <ul>
+            {%for error in form.category.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.budget.label}}<br />
+            {{form.budget}}
+        </p>
+        <ul>
+            {%for error in form.budget.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.urgency_level.label}}<br />
+            {{form.urgency_level}}
+        </p>
+        <ul>
+            {%for error in form.urgency_level.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.notes.label}}<br />
+            {{form.notes}}
+        </p>
+        <p>
+            {{form.submit}}
+        </p>
+
+    </form>
+
 </div>
 
 
