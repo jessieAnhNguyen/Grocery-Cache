@@ -1,28 +1,59 @@
+# Grocery Cache
+
 Grocery Cache is a web app that helps users manage their grocery list and budget in an effective and fast way.
 
-
 ## Information for collaborators:
-Please clone using https://github.com/jessieAnhNguyen/Grocery-Cache.git
-Then go to the folder from the terminal and type the following
 
+Please clone this repository https://github.com/jessieAnhNguyen/Grocery-Cache.git
+From the terminal of the project directory from the terminal, type the following commands
+
+1. Install the virtual environment called venv:
+
+```
 python3 -m venv venv
+```
 
-Then switch the environment using 
-(MAC) : source venv/bin/activate 
-(Windows) : venv\Scripts\activate
+2. Switch to the environment
 
-Then do the following to set the app and the dev env
-(MAC) : export FLASK_APP=app.py
-(Windows) : set FLASK_APP=app.py
+```
+- (MAC) : source venv/bin/activate
+- (Windows) : venv\Scripts\activate
+```
 
-(MAC) : export FLASK_ENV=development
-(Windows) : set FLASK_ENV=development
+3. Do the following to set the app (if the main file name is different from app.py)
 
-Then 
+```
+- (MAC) : export FLASK_APP=app.py
+- (Windows) : set FLASK_APP=app.py
+```
+
+4. Use debug (DEV) mode
+
+```
+- (MAC) : export FLASK_ENV=development
+- (Windows) : set FLASK_ENV=development
+```
+
+5. Install the required dependencies:
+
+```
 pip install requirements.txt
+```
 
 This will install the required dependencies to your virtual environment
 venv has been kept in gitignore to avoid uploading the modules
+
+6. Run the project:
+
+```
+flask run
+```
+
+If you install more dependencies, please update the requirements.txt by
+
+```
+pip freeze > requirements.txt
+```
 
 ## Project Description:
 

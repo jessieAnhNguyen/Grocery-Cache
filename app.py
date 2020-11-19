@@ -19,7 +19,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///grocerycache.db"
 db = SQLAlchemy(app)
 
 
-# Create db model
+# Create db model of Main_List
 class Main_List(db.Model):
     item_ID = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String(), nullable=False)
@@ -45,9 +45,7 @@ def page_not_found(e):
 def internal_server_error(e):
     return render_template("500.html"), 500
 
-# Update an item
-
-
+# Update an item in Main_list
 @app.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
     # get the item from the database
@@ -73,9 +71,7 @@ def update(id):
     else:
         return render_template("update.html", form=mainForm, item_to_update=item_to_update)
 
-# TODO: write the delete an item function
-
-
+# TODO: delete an item in Main_list
 @app.route("/delete/<int:id>", methods=["GET"])
 def delete(id):
     item_to_delete = Main_List.query.get_or_404(id)
@@ -88,9 +84,7 @@ def delete(id):
         flash("There was an error deleting the ingredient", "error")
         return "There was a problem updating the recipe"
 
-# Read the main list
-
-
+# Add and update an item to Main_list
 @app.route("/", methods=["GET", "POST"])
 def index():
     mainForm = IndividualItemForm()
