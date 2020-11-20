@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Gategory list{% endblock %}
+
+{% block page_content %}
+
+<ul id="listOfCategories">
+    {%for categories in categoryList%}
+    <li>{{categories.category_name}}
+        <a href="/update/{{categories.category_ID}}" class="btn btn-outline-secondary btn-sm">Update</a>
+        <a href="/delete/{{categories.category_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
+    </li>
+    {%endfor%}
+</ul>
+<div class="container">
+    <form method="POST" action="/">
+        {{form.csrf_token}}
+        <p>
+            {{form.category_name.label}}<br />
+            {{form.category_name}}
+        </p>
+        <ul>
+            {%for error in form.category_name.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.description.label}}<br />
+            {{form.description}}
+        </p>
+        <ul>
+            {%for error in form.description.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.submit}}
+        </p>
+
+    </form>
+
+</div>
+
+
+{% endblock %}

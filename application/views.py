@@ -31,7 +31,7 @@ def update(id):
     else:
         return render_template("update.html", form=mainForm, item_to_update=item_to_update)
 
-# TODO: delete an item in app.Main_List
+# TODO: message flash displayed to delete an item in app.Main_List
 
 
 @app.route("/delete/<int:id>", methods=["GET"])
@@ -40,11 +40,11 @@ def delete(id):
     try:
         db.session.delete(item_to_delete)
         db.session.commit()
-        flash("You successfully deleted the ingredient", "success")
+        flash("You successfully deleted the grocery item", "success")
         return redirect(url_for("index"))
     except:
-        flash("There was an error deleting the ingredient", "error")
-        return "There was a problem updating the recipe"
+        flash("There was an error deleting the grocery item", "error")
+        return "There was a problem updating the grocery item"
 
 # Add and update an item to app.Main_List
 
