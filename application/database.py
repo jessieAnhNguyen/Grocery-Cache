@@ -1,9 +1,4 @@
-from application import app
-from flask_sqlalchemy import SQLAlchemy
-
-# Initialize the database
-db = SQLAlchemy(app)
-
+from application import app, db
 
 # Create db model of an item
 class Main_List(db.Model):
@@ -20,6 +15,7 @@ class Main_List(db.Model):
 
 # Create db model of Category
 class Category(db.Model):
+    # __bind_key__ = 'categoryTable'
     category_ID = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=True)

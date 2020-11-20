@@ -14,6 +14,8 @@ from wtforms import (
 from wtforms.validators import DataRequired, Email, Length, EqualTo, NumberRange
 
 # Form to add/update an item in main_list
+
+
 class IndividualItemForm(FlaskForm):
     item_name = StringField("Item Name", validators=[
         DataRequired(),
@@ -32,10 +34,13 @@ class IndividualItemForm(FlaskForm):
     submit = SubmitField("Submit")
 
 # Form to add/update a category
+
+
 class IndividualCategoryForm(FlaskForm):
-    category_name = StringField("Category Name", validators=[
-        Length(max=200, message="Category must be less than 200 characters"),
-    ])
+    category_name = StringField("Category Name", validators=[DataRequired(),
+                                                             Length(
+                                                                 max=200, message="Category must be less than 200 characters"),
+                                                             ])
     description = StringField("Description of category", validators=[
         Length(max=1000, message="Description must be less than 1000 characters"),
     ])

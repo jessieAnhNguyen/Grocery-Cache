@@ -8,13 +8,13 @@
 <ul id="listOfCategories">
     {%for categories in categoryList%}
     <li>{{categories.category_name}}
-        <a href="/update/{{categories.category_ID}}" class="btn btn-outline-secondary btn-sm">Update</a>
-        <a href="/delete/{{categories.category_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
+        <a href="/update-category/{{categories.category_ID}}" class="btn btn-outline-secondary btn-sm">Update</a>
+        <a href="/delete-category/{{categories.category_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
     </li>
     {%endfor%}
 </ul>
 <div class="container">
-    <form method="POST" action="/">
+    <form method="POST" action="/category">
         {{form.csrf_token}}
         <p>
             {{form.category_name.label}}<br />
