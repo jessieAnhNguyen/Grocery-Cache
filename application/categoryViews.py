@@ -35,7 +35,7 @@ def viewAddCategory():
 
 # Update a category
 
-@app.route("/update-category/<int:id>", methods=["GET", "POST"])
+@app.route("/category/update/<int:id>", methods=["GET", "POST"])
 def updateCategory(id):
     # get the item from the database
     category_to_update = Category.query.get_or_404(id)
@@ -61,7 +61,7 @@ def updateCategory(id):
 # TODO: message flash displayed to delete a category
 
 
-@app.route("/delete/<int:id>", methods=["GET"])
+@app.route("/category/delete/<int:id>", methods=["GET"])
 def deleteCategory(id):
     category_to_delete = Category.query.get_or_404(id)
     try:
