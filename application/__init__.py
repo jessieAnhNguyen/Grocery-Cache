@@ -16,16 +16,6 @@ path = os.path.join(my_path, "../grocerycache.db")
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"+path
 
 
-# class Category(db.Model):
-#     category_ID = db.Column(db.Integer, primary_key=True)
-#     category_name = db.Column(db.String(), nullable=False)
-#     description = db.Column(db.String(), nullable=True)
-
-#     # Create a funcion to return a string when we add something
-#     def __repr__(self):
-#         return "<Name %r>" % self.item_ID
-
-
 app.config["SECRET_KEY"] = "Where do we go from here"
 from application import views
 
