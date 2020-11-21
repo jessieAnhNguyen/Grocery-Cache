@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from .database import db, Category
 
 
-# Add and update a category
+# Add and view a category
 @app.route("/category", methods=["GET", "POST"])
 def viewAddCategory():
     categoryForm = IndividualCategoryForm()

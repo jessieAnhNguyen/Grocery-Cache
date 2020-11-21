@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import os
 
 app = Flask(__name__)
@@ -17,14 +18,12 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///"+path
 
 # Initialize the database
 db = SQLAlchemy(app)
-
-# categoryDBpath = os.path.join(my_path, "../category.db")
-# app.config["SQLALCHEMY_BINDS"] = {'categoryTable': "sqlite:///"+categoryDBpath}
-
+migrate = Migrate(app, db)
 
 app.config["SECRET_KEY"] = "Where do we go from here"
-from application import views
+
 from application import categoryViews
+from application import views
 
 @app.errorhandler(404)
 def page_not_found(e):

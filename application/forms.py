@@ -21,8 +21,9 @@ class IndividualItemForm(FlaskForm):
         DataRequired(),
         Length(max=200, message="Item name must be less than 200 characters"),
     ])
-    category = StringField("Category", validators=[
-        Length(max=200, message="Category must be less than 200 characters"),
+    quantity = FloatField("Quantity", validators=[
+        NumberRange(
+            min=0, message="Quantity can't be negative"),
     ])
     budget = FloatField("Budget (in USD)", validators=[NumberRange(
         min=0, message="Budget can't be negative"), ])

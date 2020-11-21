@@ -4,7 +4,7 @@
 {% block title %} Update Main List{% endblock %}
 {%block content%}
 <div class="container">
-    <form method="POST" action="/update/{{item_to_update.item_ID}}">
+    <form method="POST" action="/item/update/{{item_to_update.item_ID}}">
         {{form.csrf_token}}
         <p>
             {{form.item_name.label}}<br />
@@ -16,11 +16,11 @@
             {%endfor%}
         </ul>
         <p>
-            {{form.category.label}}<br />
-            {{form.category(value=item_to_update.category)}}
+            {{form.quantity.label}}<br />
+            {{form.quantity(value=item_to_update.quantity)}}
         </p>
         <ul>
-            {%for error in form.category.errors%}
+            {%for error in form.quantity.errors%}
             <li style="color:red">{{error}}</li>
             {%endfor%}
         </ul>
