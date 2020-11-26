@@ -26,11 +26,11 @@ def viewAddCategory():
                 return "Error"
         else:
             categoryList = Category.query
-            return render_template("category.html", form=categoryForm, categoryList=categoryList)
+            return render_template("category.html", cform=categoryForm, categoryList=categoryList)
 
     else:
         categoryList = Category.query
-        return render_template("category.html", form=categoryForm, categoryList=categoryList)
+        return render_template("category.html", cform=categoryForm, categoryList=categoryList)
 
 
 # Update a category

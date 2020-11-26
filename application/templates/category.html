@@ -15,27 +15,27 @@
 </ul>
 <div class="container">
     <form method="POST" action="/category">
-        {{form.csrf_token}}
+        {{cform.csrf_token}}
         <p>
-            {{form.category_name.label}}<br />
-            {{form.category_name}}
+            {{cform.category_name.label}}<br />
+            {{cform.category_name}}
         </p>
         <ul>
-            {%for error in form.category_name.errors%}
+            {%for error in cform.category_name.errors%}
             <li style="color:red">{{error}}</li>
             {%endfor%}
         </ul>
         <p>
-            {{form.description.label}}<br />
-            {{form.description}}
+            {{cform.description.label}}<br />
+            {{cform.description}}
         </p>
         <ul>
-            {%for error in form.description.errors%}
+            {%for error in cform.description.errors%}
             <li style="color:red">{{error}}</li>
             {%endfor%}
         </ul>
         <p>
-            {{form.submit}}
+            {{cform.submit}}
         </p>
 
     </form>

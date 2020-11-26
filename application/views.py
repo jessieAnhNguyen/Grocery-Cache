@@ -1,5 +1,5 @@
 from application import app, db
-from .forms import IndividualItemForm
+from .forms import IndividualItemForm, IndividualCategoryForm
 from flask import Flask, render_template, request, redirect, url_for, flash
 from .database import Main_List
 
@@ -9,7 +9,7 @@ from .database import Main_List
 @app.route("/", methods=["GET", "POST"])
 def index():
     mainForm = IndividualItemForm()
-
+    categoryForm = IndividualCategoryForm()
     if request.method == "POST":
         if mainForm.is_submitted() and mainForm.validate():
             item_name = request.form["item_name"]
@@ -35,11 +35,11 @@ def index():
                 return "Error"
         else:
             itemList = Main_List.query
-            return render_template("index.html", form=mainForm, itemList=itemList)
+            return render_template("index.html", form=mainForm, cform=categoryForm, itemList=itemList)
 
     else:
         itemList = Main_List.query
-        return render_template("index.html", form=mainForm, itemList=itemList)
+        return render_template("index.html", form=mainForm, cform=categoryForm, itemList=itemList)
 
 
 # Update an item in app.Main_List
