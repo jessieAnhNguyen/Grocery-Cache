@@ -8,8 +8,8 @@
 <ul id="listOfItems">
     {%for items in itemList%}
     <li>{{items.item_name}}
-        <a href="/update/{{items.item_ID}}" class="btn btn-outline-secondary btn-sm">Update</a>
-        <a href="/delete/{{items.item_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
+        <a href="/item/update/{{items.item_ID}}" class="btn btn-outline-secondary btn-sm">Update</a>
+        <a href="/item/delete/{{items.item_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
     </li>
     {%endfor%}
 </ul>
@@ -26,11 +26,11 @@
             {%endfor%}
         </ul>
         <p>
-            {{form.category.label}}<br />
-            {{form.category}}
+            {{form.quantity.label}}<br />
+            {{form.quantity}}
         </p>
         <ul>
-            {%for error in form.category.errors%}
+            {%for error in form.quantity.errors%}
             <li style="color:red">{{error}}</li>
             {%endfor%}
         </ul>

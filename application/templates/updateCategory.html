@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+
+
+{% block title %} Update Category{% endblock %}
+{%block content%}
+<div class="container">
+    <form method="POST" action="/category/update/{{category_to_update.category_ID}}">
+        {{form.csrf_token}}
+        <p>
+            {{form.category_name.label}}<br />
+            {{form.category_name(value=category_to_update.category_name)}}
+        </p>
+        <ul>
+            {%for error in form.category_name.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.description.label}}<br />
+            {{form.description(value=category_to_update.description)}}
+        </p>
+        <ul>
+            {%for error in form.description.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
+        <p>
+            {{form.submit}}
+        </p>
+</div>
+
+
+{% endblock %}
