@@ -3,7 +3,7 @@ from .forms import IndividualItemForm, IndividualCategoryForm
 from flask import Flask, render_template, request, redirect, url_for, flash
 from .database import Main_List, Category
 
-# Add and update an item to app.Main_List
+# Add and view item on app.Main_List
 
 
 @app.route("/", methods=["GET", "POST"])

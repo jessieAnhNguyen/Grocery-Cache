@@ -32,6 +32,15 @@
                         {%endfor%}
                     </ul>
                     <p>
+                        {{form.quantity.label}}<br />
+                        {{form.quantity}}
+                    </p>
+                    <ul>
+                        {%for error in form.quantity.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+                    <p>
                         {{form.category.label}}<br />
                         {{form.category}}
                     </p>

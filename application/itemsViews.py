@@ -14,13 +14,14 @@ def viewAddItems():
         if mainForm.is_submitted() and mainForm.validate():
             item_name = request.form["item_name"]
             category = request.form["category"]
+            quantity = request.form["quantity"]
             budget = request.form["budget"]
             urgency_level = request.form["urgency_level"]
             notes = request.form["notes"]
 
             new_item = Main_List(
                 item_name=item_name,
-                category=category,
+                quantity=quantity,
                 budget=budget,
                 urgency_level=urgency_level,
                 notes=notes,
@@ -55,7 +56,7 @@ def update(id):
         if mainForm.is_submitted() and mainForm.validate():
             # get the updated values
             item_to_update.item_name = request.form["item_name"]
-            item_to_update.category = request.form["category"]
+            item_to_update.quantity = request.form["quantity"]
             item_to_update.budget = request.form["budget"]
             item_to_update.urgency_level = request.form["urgency_level"]
             item_to_update.notes = request.form["notes"]
@@ -66,10 +67,10 @@ def update(id):
             except:
                 return "There was a problem updating the grocery item"
         else:
-            return render_template("update.html", form=mainForm, item_to_update=item_to_update)
+            return render_template("updateItem.html", form=mainForm, item_to_update=item_to_update)
 
     else:
-        return render_template("update.html", form=mainForm, item_to_update=item_to_update)
+        return render_template("updateItem.html", form=mainForm, item_to_update=item_to_update)
 
 # TODO: message flash displayed to delete an item in app.Main_List
 

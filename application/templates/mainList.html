@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Grocery list{% endblock %}
+
+{%block respective_add_buttons%}
+{% include "./Components/addButtons/addItemsAndCategory.html" %}
+{%endblock%}
+
+
+{%block list_of_items%}
+{% include "./Components/listingComponents/listitems.html" %}
+<a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+{% endblock %}
+
+{% block categoryList %}
+{% include "./Components/listingComponents/listCategories.html" %}
+
+<a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+{% endblock %}
+
+{% block page_content %}
+
+
+
+{% endblock %}
