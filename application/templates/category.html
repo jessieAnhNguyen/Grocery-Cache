@@ -3,44 +3,13 @@
 
 {% block title %}Gategory list{% endblock %}
 
+
+{%block respective_add_buttons%}
+{% include "./Components/addButtons/addCategories.html" %}
+{%endblock%}
+
 {% block page_content %}
 
-<ul id="listOfCategories">
-    {%for categories in categoryList%}
-    <li>{{categories.category_name}}
-        <a href="/category/update/{{categories.category_ID}}" class="btn btn-outline-secondary btn-sm">Update</a>
-        <a href="/category/delete/{{categories.category_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
-    </li>
-    {%endfor%}
-</ul>
-<div class="container">
-    <form method="POST" action="/category">
-        {{cform.csrf_token}}
-        <p>
-            {{cform.category_name.label}}<br />
-            {{cform.category_name}}
-        </p>
-        <ul>
-            {%for error in cform.category_name.errors%}
-            <li style="color:red">{{error}}</li>
-            {%endfor%}
-        </ul>
-        <p>
-            {{cform.description.label}}<br />
-            {{cform.description}}
-        </p>
-        <ul>
-            {%for error in cform.description.errors%}
-            <li style="color:red">{{error}}</li>
-            {%endfor%}
-        </ul>
-        <p>
-            {{cform.submit}}
-        </p>
-
-    </form>
-
-</div>
-
+{% include "./Components/listingComponents/listCategories.html" %}
 
 {% endblock %}

@@ -3,72 +3,20 @@
 
 {% block title %}Grocery list{% endblock %}
 
+{%block respective_add_buttons%}
+{% include "./Components/addButtons/addItemsAndCategory.html" %}
+{%endblock%}
 
 
 {%block list_of_items%}
-<section class='itemLists'>
-    <div class="card">
-        <div class="card-header">
-            All Items
-        </div>
-        <ul class="list-group list-group-flush">
-            {%for items in itemList%}
-            <li class="list-group-item">{{items.item_name}}
-                <a href="/update/{{items.item_ID}}" class="btn btn-outline-secondary btn-sm">Update</a>
-                <a href="/delete/{{items.item_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
-            </li>
-            {%endfor%}
-        </ul>
-    </div>
-
-
-    <a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
-
-</section>
+{% include "./Components/listingComponents/listitems.html" %}
+<a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
 {% endblock %}
 
 {% block categoryList %}
-<section class='categoryList'>
-    <div class="row">
-        <div class="col-sm-3 col-lg-4">
-            <div class="card">
-                <div class="card-header">
-                    Category 1
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Item 1</li>
-                    <li class="list-group-item">Item 1</li>
-                    <li class="list-group-item">Item 1</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-3 col-lg-4">
-            <div class="card">
-                <div class="card-header">
-                    Category 2
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Item 1</li>
-                    <li class="list-group-item">Item 1</li>
-                    <li class="list-group-item">Item 1</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-3 col-lg-4">
-            <div class="card">
-                <div class="card-header">
-                    Category 3
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Item 1</li>
-                    <li class="list-group-item">Item 1</li>
-                    <li class="list-group-item">Item 1</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
-</section>
+{% include "./Components/listingComponents/listCategories.html" %}
+
+<a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
 {% endblock %}
 
 {% block page_content %}

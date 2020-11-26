@@ -33,11 +33,11 @@
 
             <a href="#" id="menu-toggler"> Show </a>
             <ul class="sidebarNav">
-                Grocery <br />Cache
+                <a href="/">Grocery <br />Cache</a> 
                 <hr />
                 <nav class="nav flex-column">
-                    <a class="nav-link" href="#"><button class="navButtons">Items</button></a>
-                    <a class="nav-link" href="#"><button class="navButtons">Category</button></a>
+                    <a class="nav-link" href="/items"><button class="navButtons">Items</button></a>
+                    <a class="nav-link" href="/category"><button class="navButtons">Category</button></a>
                     <a class="nav-link" href="#"><button class="navButtons">Budget</button></a>
                 </nav>
             </ul>
@@ -47,17 +47,10 @@
         <div id="page-content-wrapper">
             <section class="all-items">
                 <!-- The following is the main page -->
-
-                {% include "./Components/addButtons.html" %}
+                {%block respective_add_buttons%}
+                {%endblock%}
 
                 <!-- Button trigger modal -->
-
-                {% block modal %}
-                {% endblock %}
-
-
-
-
                 {% block content %}
                 <!-- List of items based on priority -->
                 {% block list_of_items %}

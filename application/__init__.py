@@ -25,6 +25,7 @@ db = SQLAlchemy(app)
 app.config["SECRET_KEY"] = "Where do we go from here"
 from application import views
 from application import categoryViews
+from application import itemsViews
 
 @app.errorhandler(404)
 def page_not_found(e):

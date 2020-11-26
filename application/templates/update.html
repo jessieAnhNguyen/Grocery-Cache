@@ -4,7 +4,7 @@
 {% block title %} Update Main List{% endblock %}
 {%block content%}
 <div class="container">
-    <form method="POST" action="/update/{{item_to_update.item_ID}}">
+    <form method="POST" action="/items/update/{{item_to_update.item_ID}}">
         {{form.csrf_token}}
         <p>
             {{form.item_name.label}}<br />
