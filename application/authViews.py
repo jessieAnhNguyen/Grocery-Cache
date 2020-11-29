@@ -27,7 +27,8 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember_user.data)
-            return redirect(url_for('index'))
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
             flash('Could not log in! Check if you entered your email and password correctly', 'error')
     return render_template("login.html", form=form)
@@ -36,3 +37,8 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route("/account")
+@login_required
+def account():
+    return render_template('account.html')
