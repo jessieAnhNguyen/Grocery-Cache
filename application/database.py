@@ -33,7 +33,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class User(db.Model, UserMixin):
-    user_ID = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(), unique=True, nullable=False)
     email = db.Column(db.String(), unique=True, nullable=False)
     password = db.Column(db.String(), nullable=False)
@@ -43,3 +43,7 @@ class User(db.Model, UserMixin):
     # Create a funcion to return a string when we add something
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
+
+    # Create a funcion to return user id
+    def get_id(self):
+           return (self.user_id)

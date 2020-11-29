@@ -45,6 +45,16 @@
 
         <!-- Main Page Content -->
         <div id="page-content-wrapper">
+            <!-- display flash messages -->
+            <div class="container">
+                {% for category, message in get_flashed_messages(with_categories=true) %} {%
+                if category == 'success' %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+                {% endif %} {% if category == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ message }}</div>
+                {% endif %} {% endfor %}
+            </div>
+            
             <section class="all-items">
                 <!-- The following is the main page -->
                 {%block respective_add_buttons%}
@@ -52,6 +62,10 @@
 
                 <!-- Button trigger modal -->
                 {% block content %}
+
+                {% block user_auth %}
+                {% endblock %}
+
                 <!-- List of items based on priority -->
                 {% block list_of_items %}
                 {% endblock %}

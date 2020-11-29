@@ -1,10 +1,13 @@
 from application import app, db, bcrypt
-from .forms import RegistrationForm
+from .forms import RegistrationForm, LoginForm
 from flask import Flask, render_template, request, redirect, url_for, flash
 from .database import User
+from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -14,3 +17,22 @@ def register():
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template("register.html", form=form)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember_user.data)
+            return redirect(url_for('index'))
+        else:
+            flash('Could not log in! Check if you entered your email and password correctly', 'error')
+    return render_template("login.html", form=form)
+
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
