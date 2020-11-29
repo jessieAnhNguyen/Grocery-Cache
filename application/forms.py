@@ -25,6 +25,9 @@ class IndividualItemForm(FlaskForm):
         NumberRange(
             min=0, message="Quantity can't be negative"),
     ])
+    category = StringField("Category", validators=[
+        Length(max=200, message="Category must be less than 200 characters"),
+    ])
     budget = FloatField("Budget (in USD)", validators=[NumberRange(
         min=0, message="Budget can't be negative"), ])
     urgency_level = IntegerField("Urgency Level", validators=[NumberRange(

@@ -1,12 +1,13 @@
 from application import app, db
-from .forms import IndividualCategoryForm
+from .forms import IndividualItemForm, IndividualCategoryForm
 from flask import Flask, render_template, request, redirect, url_for, flash
-from .database import db, Category
+from .database import db, Category, Main_List
 
 
 # Add and view a category
 @app.route("/category", methods=["GET", "POST"])
 def viewAddCategory():
+    mainForm = IndividualItemForm()
     categoryForm = IndividualCategoryForm()
     if request.method == "POST":
         if categoryForm.is_submitted() and categoryForm.validate():
@@ -25,12 +26,16 @@ def viewAddCategory():
             except:
                 return "Error"
         else:
+            itemList = Main_List.query
             categoryList = Category.query
-            return render_template("category.html", form=categoryForm, categoryList=categoryList)
+            # Will have to change to categories.html later
+            return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
     else:
+        itemList = Main_List.query
         categoryList = Category.query
-        return render_template("category.html", form=categoryForm, categoryList=categoryList)
+        # Will have to change to categories.html later
+        return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
 
 # Update a category

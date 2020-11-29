@@ -1,0 +1,135 @@
+<!-- The following is the main page -->
+<section class='buttons'>
+    <div class="addButtons">
+        <button type="button" id="addItem" data-toggle="modal" data-target="#staticBackdrop">
+            + Item
+        </button>
+        <button type="button" id="addCategory" data-toggle="modal" data-target="#categoryModal">
+            + Category
+        </button>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/items">
+
+                <div class="modal-body">
+                    {{form.csrf_token}}
+
+                    <p>
+                        {{form.item_name.label}}<br />
+                        {{form.item_name}}
+                    </p>
+                    <ul>
+                        {%for error in form.item_name.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+                    <p>
+                        {{form.quantity.label}}<br />
+                        {{form.quantity}}
+                    </p>
+                    <ul>
+                        {%for error in form.quantity.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+                    <p>
+                        {{form.category.label}}<br />
+                        {{form.category}}
+                    </p>
+                    <ul>
+                        {%for error in form.category.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+                    <p>
+                        {{form.budget.label}}<br />
+                        {{form.budget}}
+                    </p>
+                    <ul>
+                        {%for error in form.budget.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+                    <p>
+                        {{form.urgency_level.label}}<br />
+                        {{form.urgency_level}}
+                    </p>
+                    <ul>
+                        {%for error in form.urgency_level.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+                    <p>
+                        {{form.notes.label}}<br />
+                        {{form.notes}}
+                    </p>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{form.submit}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="categoryModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/category">
+
+                <div class="modal-body">
+                    {{cform.csrf_token}}
+                    <p>
+                        {{cform.category_name.label}}<br />
+                        {{cform.category_name}}
+                    </p>
+                    <ul>
+                        {%for error in cform.category_name.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+                    <p>
+                        {{cform.description.label}}<br />
+                        {{cform.description}}
+                    </p>
+                    <ul>
+                        {%for error in cform.description.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{cform.submit}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

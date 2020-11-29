@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Grocery list{% endblock %}
+
+{%block respective_add_buttons%}
+{% include "./Components/addButtons/addItems.html" %}
+{%endblock%}
+
+
+{%block list_of_items%}
+
+{% include "./Components/listingComponents/listitems.html" %}
+
+{% endblock %}
+
+{% block page_content %}
+
+
+
+{% endblock %}

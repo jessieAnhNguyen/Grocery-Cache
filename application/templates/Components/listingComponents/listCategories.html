@@ -1,0 +1,30 @@
+<section class='categoryList'>
+    <div class="row">
+        {%for categories in categoryList%}
+        <div class="col-sm-3 col-lg-4">
+
+            <div class="card">
+                <div class="card-header">
+                    {{categories.category_name}}
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Item 1</li>
+                    <li class="list-group-item">Item 1</li>
+                    <li class="list-group-item">Item 1</li>
+                    <li class="list-group-item">
+                        <a href="/category/update/{{categories.category_ID}}"
+                            class="btn btn-outline-secondary btn-sm">Update</a>
+                        <a href="/category/delete/{{categories.category_ID}}"
+                            class="btn btn-outline-danger btn-sm">Delete</a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+        </div>
+        {%endfor%}
+
+
+    </div>
+</section>

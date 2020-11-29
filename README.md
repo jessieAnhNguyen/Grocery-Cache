@@ -36,7 +36,7 @@ python3 -m venv venv
 5. Install the required dependencies:
 
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 This will install the required dependencies to your virtual environment

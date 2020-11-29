@@ -23,6 +23,7 @@ migrate = Migrate(app, db)
 app.config["SECRET_KEY"] = "Where do we go from here"
 
 from application import categoryViews
+from application import itemsViews
 from application import views
 
 @app.errorhandler(404)
