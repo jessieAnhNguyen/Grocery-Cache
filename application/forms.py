@@ -3,15 +3,12 @@ from wtforms import (
     StringField,
     PasswordField,
     SubmitField,
-    BooleanField,
-    SelectField,
     IntegerField,
-    DateField,
-    FloatField,
-    RadioField,
+    FloatField
 )
 
-from wtforms.validators import DataRequired, Email, Length, EqualTo, NumberRange
+from wtforms.validators import DataRequired, Email, Length, EqualTo, NumberRange, ValidationError
+from .database import User
 
 # Form to add/update an item in main_list
 
@@ -49,3 +46,27 @@ class IndividualCategoryForm(FlaskForm):
         Length(max=1000, message="Description must be less than 1000 characters"),
     ])
     submit = SubmitField("Submit")
+
+
+# Form to register an account
+
+
+class RegistrationForm(FlaskForm):
+    username = StringField("Username", validators=[DataRequired(),
+                                                             Length(min=1,
+                                                                 max=200, message="Username must be less than 200 characters"),
+                                                             ])
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    confirm_password = PasswordField("Confirm password", validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField("Sign up")
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError('That username already exists.')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('That email already exists.')                                      
