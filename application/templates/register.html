@@ -1,0 +1,70 @@
+<section class='buttons'>
+    <div class="addButtons">
+        <button type="button" id="addCategory" data-toggle="modal" data-target="#categoryModal">
+            Sign up
+        </button>
+    </div>
+</section>
+
+<div class="modal fade" id="categoryModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/register">
+
+                <div class="modal-body">
+                    {{form.csrf_token}}
+                    <p>
+                        {{form.username.label}}<br />
+                        {{form.username}}
+                    </p>
+                    <ul>
+                        {%for error in form.username.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+                    <p>
+                        {{form.email.label}}<br />
+                        {{form.email}}
+                    </p>
+                    <ul>
+                        {%for error in form.email.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+
+                    <p>
+                        {{form.password.label}}<br />
+                        {{form.password}}
+                    </p>
+                    <ul>
+                        {%for error in form.password.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+
+                    <p>
+                        {{form.confirm_password.label}}<br />
+                        {{form.confirm_password}}
+                    </p>
+                    <ul>
+                        {%for error in form.confirm_password.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{form.submit}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
-from application import app, db
-
+from application import app, db, login_manager
+from flask_login import UserMixin
 # Create db model of an item
 
 
@@ -26,3 +26,24 @@ class Category(db.Model):
     # Create a funcion to return a string when we add something
     def __repr__(self):
         return "<Name %r>" % self.category_ID
+
+# Create db model of a user
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+class User(db.Model, UserMixin):
+    user_id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(), unique=True, nullable=False)
+    email = db.Column(db.String(), unique=True, nullable=False)
+    password = db.Column(db.String(), nullable=False)
+    urgency_level = db.Column(db.Integer, nullable=True)
+    notes = db.Column(db.String(), nullable=True)
+
+    # Create a funcion to return a string when we add something
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}')"
+
+    # Create a funcion to return user id
+    def get_id(self):
+           return (self.user_id)
