@@ -11,13 +11,13 @@
 
 {%block list_of_items%}
 {% include "./Components/listingComponents/listitems.html" %}
-<a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+<a href="{{ url_for('viewAddItems') }}" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
 {% endblock %}
 
 {% block categoryList %}
 {% include "./Components/listingComponents/listCategories.html" %}
 
-<a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+<a href="{{ url_for('viewAddCategory') }}" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
 {% endblock %}
 
 {% block page_content %}
