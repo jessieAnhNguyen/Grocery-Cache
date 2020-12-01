@@ -29,7 +29,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/items">
+            <form method="POST" action="{{url_for('viewAddItems',next='index')}}">
 
                 <div class="modal-body">
                     {{form.csrf_token}}
