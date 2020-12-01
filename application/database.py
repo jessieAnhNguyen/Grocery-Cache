@@ -37,8 +37,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(), unique=True, nullable=False)
     email = db.Column(db.String(), unique=True, nullable=False)
     password = db.Column(db.String(), nullable=False)
-    urgency_level = db.Column(db.Integer, nullable=True)
-    notes = db.Column(db.String(), nullable=True)
+
+
 
     # Create a funcion to return a string when we add something
     def __repr__(self):
