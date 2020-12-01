@@ -1,20 +1,16 @@
-<section class='buttons'>
-    <div class="addButtons">
-        <button type="button" id="addCategory" data-toggle="modal" data-target="#categoryModal">
-            Sign up
-        </button>
-    </div>
-</section>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-<div class="modal fade" id="categoryModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+{% block title %}Grocery list{% endblock %}
+
+{% block page_content %}
+
+<div class="modal fade" id="registerModal" data-backdrop="static" data-keyboard="false" 
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <form method="POST" action="/register">
 
@@ -61,10 +57,15 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     {{form.submit}}
+                </div>
+                <div class="modal-footer">
+                    Already have an account? &nbsp;
+                    <a  href="{{ url_for('login') }}">Login</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+{% endblock %}
