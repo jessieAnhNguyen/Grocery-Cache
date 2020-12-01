@@ -10,6 +10,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 
 @app.route("/items", methods=["GET", "POST"])
+@login_required
 def viewAddItems():
     mainForm = IndividualItemForm()
     categoryForm = IndividualCategoryForm()
@@ -45,7 +46,7 @@ def viewAddItems():
             return render_template("items.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
     else:
-        itemList = Main_List.query
+        itemList = Main_List.query.filter_by(author=current_user)
         categoryList = Category.query
         return render_template("items.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
@@ -53,6 +54,7 @@ def viewAddItems():
 # Update an item in app.Main_List
 
 @app.route("/items/update/<int:id>", methods=["GET", "POST"])
+@login_required
 def update(id):
     # get the item from the database
     item_to_update = Main_List.query.get_or_404(id)
@@ -81,6 +83,7 @@ def update(id):
 
 
 @app.route("/items/delete/<int:id>", methods=["GET"])
+@login_required
 def delete(id):
     item_to_delete = Main_List.query.get_or_404(id)
     try:

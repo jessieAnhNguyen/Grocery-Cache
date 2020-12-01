@@ -9,6 +9,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 # Add and view a category
 @app.route("/category", methods=["GET", "POST"])
+@login_required
 def viewAddCategory():
     mainForm = IndividualItemForm()
     categoryForm = IndividualCategoryForm()
@@ -33,20 +34,19 @@ def viewAddCategory():
                 return "Error"
         else:
             itemList = Main_List.query
-            categoryList = Category.query
-            # Will have to change to categories.html later
+            categoryList = Category.query.filter_by(author=current_user)
             return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
     else:
         itemList = Main_List.query
-        categoryList = Category.query
-        # Will have to change to categories.html later
+        categoryList = Category.query.filter_by(author=current_user)
         return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
 
 # Update a category
 
 @app.route("/category/update/<int:id>", methods=["GET", "POST"])
+@login_required
 def updateCategory(id):
     # get the item from the database
     category_to_update = Category.query.get_or_404(id)
@@ -73,6 +73,7 @@ def updateCategory(id):
 
 
 @app.route("/category/delete/<int:id>", methods=["GET"])
+@login_required
 def deleteCategory(id):
     category_to_delete = Category.query.get_or_404(id)
     try:
