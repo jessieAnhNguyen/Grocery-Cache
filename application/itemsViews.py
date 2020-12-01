@@ -3,6 +3,9 @@ from .forms import IndividualItemForm, IndividualCategoryForm
 from flask import Flask, render_template, request, redirect, url_for, flash
 from .database import Main_List, Category
 
+from flask_login import login_user, current_user, logout_user, login_required
+
+
 # Add and update an item to app.Main_List
 
 
@@ -18,6 +21,7 @@ def viewAddItems():
             budget = request.form["budget"]
             urgency_level = request.form["urgency_level"]
             notes = request.form["notes"]
+            author = current_user
 
             new_item = Main_List(
                 item_name=item_name,
@@ -25,6 +29,7 @@ def viewAddItems():
                 budget=budget,
                 urgency_level=urgency_level,
                 notes=notes,
+                author = author
             )
 
             # Push to Database

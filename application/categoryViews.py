@@ -3,6 +3,9 @@ from .forms import IndividualItemForm, IndividualCategoryForm
 from flask import Flask, render_template, request, redirect, url_for, flash
 from .database import db, Category, Main_List
 
+from flask_login import login_user, current_user, logout_user, login_required
+
+
 
 # Add and view a category
 @app.route("/category", methods=["GET", "POST"])
@@ -13,9 +16,12 @@ def viewAddCategory():
         if categoryForm.is_submitted() and categoryForm.validate():
             category_name = request.form["category_name"]
             description = request.form["description"]
+            author = current_user
+
             new_category = Category(
                 category_name=category_name,
                 description=description,
+                author = author
             )
 
             # Push to Database
