@@ -34,12 +34,12 @@ def viewAddCategory():
                 return "Error"
         else:
             itemList = Main_List.query
-            categoryList = Category.query.filter_by(author=current_user)
+            categoryList = Category.query.filter_by(author=current_user).all()
             return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
     else:
         itemList = Main_List.query
-        categoryList = Category.query.filter_by(author=current_user)
+        categoryList = Category.query.filter_by(author=current_user).all()
         return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
 

@@ -11,7 +11,12 @@
 
 {%block list_of_items%}
 {% include "./Components/listingComponents/listitems.html" %}
+
+{%if itemList|length%}
 <a href="{{ url_for('viewAddItems') }}" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+{%endif%}
+
+
 {% endblock %}
 
 {% block categoryList %}

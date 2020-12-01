@@ -15,6 +15,6 @@ def index():
     mainForm = IndividualItemForm()
     categoryForm = IndividualCategoryForm()
     
-    itemList = Main_List.query.filter_by(author=current_user)
-    categoryList = Category.query.filter_by(author=current_user)
+    itemList = Main_List.query.filter_by(author=current_user).all()
+    categoryList = Category.query.filter_by(author=current_user).all()
     return render_template("index.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)

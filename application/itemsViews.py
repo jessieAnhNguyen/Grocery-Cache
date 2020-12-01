@@ -41,13 +41,13 @@ def viewAddItems():
             except:
                 return "Error"
         else:
-            itemList = Main_List.query
-            categoryList = Category.query
+            itemList = Main_List.query.filter_by(author=current_user).all()
+            categoryList = Category.query.all()
             return render_template("items.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
     else:
-        itemList = Main_List.query.filter_by(author=current_user)
-        categoryList = Category.query
+        itemList = Main_List.query.filter_by(author=current_user).all()
+        categoryList = Category.query.all()
         return render_template("items.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
 

@@ -1,9 +1,5 @@
 <section class='itemLists'>
     {%if itemList|length%}
-    haha
-    {%else%}
-    List is empty
-    {%endif%}
     <div class="card">
         <div class="card-header">
             Items
@@ -18,5 +14,13 @@
            
         </ul>
     </div>
+    {%else%}
+    <div class="card">
+        <div class="card-header">
+            List is empty
+        </div> 
+    </div>
+    {%endif%}
+   
 
 </section>
