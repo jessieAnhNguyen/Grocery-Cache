@@ -1,13 +1,21 @@
 <!-- The following is the main page -->
 <section class='buttons'>
-    <div class="addButtons">
-        <button type="button" id="addItem" data-toggle="modal" data-target="#staticBackdrop">
-            + Item
-        </button>
-        <button type="button" id="addCategory" data-toggle="modal" data-target="#categoryModal">
-            + Category
-        </button>
-    </div>
+    <div class="row justify-content-between align-items-center">
+        <div class="col-4">
+            <h1 >Welcome {{ current_user.username }}!</h1>
+        </div>
+        <div class="col-4">
+            <div class="addButtons">
+                <button type="button" id="addItem" data-toggle="modal" data-target="#staticBackdrop">
+                    + Item
+                </button>
+                <button type="button" id="addCategory" data-toggle="modal" data-target="#categoryModal">
+                    + Category
+                </button>
+            </div>
+        </div>
+      </div>
+   
 </section>
 
 <!-- Modal -->
