@@ -79,7 +79,7 @@ def update(id):
             try:
                 # update to the database
                 db.session.commit()
-                return redirect(url_for("index"))
+                return redirect(url_for("viewAddItems"))
             except:
                 return "There was a problem updating the grocery item"
         else:
@@ -99,7 +99,7 @@ def delete(id):
         db.session.delete(item_to_delete)
         db.session.commit()
         flash("You successfully deleted the grocery item", "success")
-        return redirect(url_for("index"))
+        return redirect(url_for("viewAddItems"))
     except:
         flash("There was an error deleting the grocery item", "error")
         return "There was a problem updating the grocery item"
