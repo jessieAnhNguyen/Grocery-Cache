@@ -29,17 +29,23 @@ def viewAddCategory():
             try:
                 db.session.add(new_category)
                 db.session.commit()
-                return redirect(url_for("viewAddCategory"))
+                next_page = request.args.get('next')
+                return redirect(url_for("viewAddCategory",next=next_page)) if next_page else redirect(url_for("viewAddCategory"))
             except:
                 return "Error"
         else:
-            itemList = Main_List.query
+            itemList = Main_List.query.filter_by(author=current_user).all()
             categoryList = Category.query.filter_by(author=current_user).all()
             return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
     else:
-        itemList = Main_List.query
+        itemList = Main_List.query.filter_by(author=current_user).all()
         categoryList = Category.query.filter_by(author=current_user).all()
+        next_page = request.args.get('next')
+        if next_page == 'category':
+            return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
+        elif next_page == 'index':
+            return render_template("index.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
         return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
 

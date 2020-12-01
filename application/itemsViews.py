@@ -43,12 +43,12 @@ def viewAddItems():
                 return "Error"
         else:
             itemList = Main_List.query.filter_by(author=current_user).all()
-            categoryList = Category.query.all()
+            categoryList = Category.query.filter_by(author=current_user).all()
             return render_template("items.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
     else:
         itemList = Main_List.query.filter_by(author=current_user).all()
-        categoryList = Category.query.all()
+        categoryList = Category.query.filter_by(author=current_user).all()
         next_page = request.args.get('next')
         if next_page == 'items':
             return render_template("items.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)

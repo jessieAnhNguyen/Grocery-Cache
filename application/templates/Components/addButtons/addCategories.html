@@ -24,7 +24,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/category">
+            <form method="POST" action="{{url_for('viewAddCategory',next='category')}}">
 
                 <div class="modal-body">
                     {{cform.csrf_token}}
