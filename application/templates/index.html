@@ -22,7 +22,9 @@
 {% block categoryList %}
 {% include "./Components/listingComponents/listCategories.html" %}
 
+{%if categoryList|length%}
 <a href="{{ url_for('viewAddCategory') }}" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+{%endif%}
 {% endblock %}
 
 {% block page_content %}
