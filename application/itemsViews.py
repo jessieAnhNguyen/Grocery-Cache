@@ -37,7 +37,8 @@ def viewAddItems():
             try:
                 db.session.add(new_item)
                 db.session.commit()
-                return redirect(url_for("viewAddItems"))
+                next_page = request.args.get('next')
+                return redirect(url_for("viewAddItems",next=next_page)) if next_page else redirect(url_for("viewAddItems"))
             except:
                 return "Error"
         else:
@@ -48,11 +49,7 @@ def viewAddItems():
     else:
         itemList = Main_List.query.filter_by(author=current_user).all()
         categoryList = Category.query.all()
-
         next_page = request.args.get('next')
-        
-        print('Helo')
-        print(next_page)
         if next_page == 'items':
             return render_template("items.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
         elif next_page == 'index':
