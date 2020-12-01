@@ -1,7 +1,12 @@
 <section class='itemLists'>
+    {%if itemList|length%}
+    haha
+    {%else%}
+    List is empty
+    {%endif%}
     <div class="card">
         <div class="card-header">
-            All Items In here
+            Items
         </div>
         <ul class="list-group list-group-flush">
             {%for items in itemList%}
@@ -10,6 +15,7 @@
                 <a href="/items/delete/{{items.item_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
             </li>
             {%endfor%}
+           
         </ul>
     </div>
 
