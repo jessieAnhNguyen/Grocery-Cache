@@ -5,5 +5,13 @@ $('#menu-toggler').click(function (e) {
     $('#wrapper').toggleClass('menuDisplayed');
 });
 
+$(window).on('load',function(){
+   
+    $('#registerModal').modal('show');
+    $('#loginModal').modal('show');
+});
+
+
+
 console.log('wtf')
 

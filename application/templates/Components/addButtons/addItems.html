@@ -1,9 +1,17 @@
 <section class='buttons'>
-    <div class="addButtons">
-        <button type="button" id="addItem" data-toggle="modal" data-target="#staticBackdrop">
-            + Item
-        </button>
-    </div>
+    <div class="row justify-content-between align-items-center">
+        <div class="col-4">
+            <h1 >ITEMS</h1>
+        </div>
+        <div class="col-4">
+            <div class="addButtons">
+                <button type="button" id="addItem" data-toggle="modal" data-target="#staticBackdrop">
+                    + Item
+                </button>
+            </div>
+        </div>
+      </div>
+    
 </section>
 
 <!-- Modal -->
@@ -12,12 +20,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">ADD ITEM</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/items">
+            <form method="POST" action="{{url_for('viewAddItems',next='items')}}">
 
                 <div class="modal-body">
                     {{form.csrf_token}}

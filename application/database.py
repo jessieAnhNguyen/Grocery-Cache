@@ -11,6 +11,9 @@ class Main_List(db.Model):
     urgency_level = db.Column(db.Integer, nullable=True)
     notes = db.Column(db.String(), nullable=True)
 
+    # User Id
+    user_id = db.Column(db.Integer,db.ForeignKey('user.user_id'),nullable=False)
+
     # Create a funcion to return a string when we add something
     def __repr__(self):
         return "<Name %r>" % self.item_ID
@@ -22,6 +25,9 @@ class Category(db.Model):
     category_ID = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=True)
+
+    #User id
+    user_id = db.Column(db.Integer,db.ForeignKey('user.user_id'),nullable=False)
 
     # Create a funcion to return a string when we add something
     def __repr__(self):
@@ -37,8 +43,12 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(), unique=True, nullable=False)
     email = db.Column(db.String(), unique=True, nullable=False)
     password = db.Column(db.String(), nullable=False)
-    urgency_level = db.Column(db.Integer, nullable=True)
-    notes = db.Column(db.String(), nullable=True)
+
+    # New items and category relation
+    items = db.relationship('Main_List', backref='author',lazy=True)
+    categories = db.relationship('Category', backref='author',lazy=True)
+
+
 
     # Create a funcion to return a string when we add something
     def __repr__(self):

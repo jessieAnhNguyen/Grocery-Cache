@@ -38,8 +38,10 @@
 /* Till Here */
 
 
-
-
+.title{
+    width: 20%;
+    margin: 0;
+}
 /* Button Design */
 .buttons{
     height: 32px;

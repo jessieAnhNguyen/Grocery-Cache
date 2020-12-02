@@ -7,27 +7,24 @@
 {% include "./Components/addButtons/addItemsAndCategory.html" %}
 {%endblock%}
 
-{%block user_auth%}
-<div class="container">
-    {% if current_user.is_authenticated %}
-      <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
-      <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
-    {% else %}
-      <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-      <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
-    {% endif %}
-</div>
-{% endblock %}
+
 
 {%block list_of_items%}
 {% include "./Components/listingComponents/listitems.html" %}
-<a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+
+{%if itemList|length%}
+<a href="{{ url_for('viewAddItems') }}" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+{%endif%}
+
+
 {% endblock %}
 
 {% block categoryList %}
 {% include "./Components/listingComponents/listCategories.html" %}
 
-<a href="" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+{%if categoryList|length%}
+<a href="{{ url_for('viewAddCategory') }}" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
+{%endif%}
 {% endblock %}
 
 {% block page_content %}

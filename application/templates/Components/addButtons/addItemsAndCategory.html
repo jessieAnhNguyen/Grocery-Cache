@@ -1,13 +1,21 @@
 <!-- The following is the main page -->
 <section class='buttons'>
-    <div class="addButtons">
-        <button type="button" id="addItem" data-toggle="modal" data-target="#staticBackdrop">
-            + Item
-        </button>
-        <button type="button" id="addCategory" data-toggle="modal" data-target="#categoryModal">
-            + Category
-        </button>
-    </div>
+    <div class="row justify-content-between align-items-center">
+        <div class="col-4">
+            <h1 >Welcome {{ current_user.username }}!</h1>
+        </div>
+        <div class="col-4">
+            <div class="addButtons">
+                <button type="button" id="addItem" data-toggle="modal" data-target="#staticBackdrop">
+                    + Item
+                </button>
+                <button type="button" id="addCategory" data-toggle="modal" data-target="#categoryModal">
+                    + Category
+                </button>
+            </div>
+        </div>
+      </div>
+   
 </section>
 
 <!-- Modal -->
@@ -16,12 +24,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Add Item</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/items">
+            <form method="POST" action="{{url_for('viewAddItems',next='index')}}">
 
                 <div class="modal-body">
                     {{form.csrf_token}}
@@ -96,12 +104,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Add Category</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/category">
+            <form method="POST" action="{{url_for('viewAddCategory',next='index')}}">
 
                 <div class="modal-body">
                     {{cform.csrf_token}}
