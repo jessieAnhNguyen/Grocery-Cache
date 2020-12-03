@@ -57,5 +57,3 @@ pip freeze > requirements.txt
 ## Project Description:
 
 Given our busy lifestyles, it can be inconvenient to purchase groceries without a list or create an ill-organised one on the fly using the notes app on our phones. It can also be rather frustrating to forget to purchase an important item during a shopping trip or over-spending by purchasing items already present in your refrigerator/ pantry. We, therefore, want to create a web application that effectively allows users to create grocery lists and manage their grocery expenses. “Grocery Cache” will enable users to do just that with its simple design and useful functionality. It will allow users to create generic grocery lists, lists specific to particular recipes, set up recurring reminders to purchase regular-use items, and effectively budget their expenses.
-
-Hello World!
