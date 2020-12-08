@@ -1,7 +1,7 @@
 from application import app, db
 from .forms import IndividualItemForm, IndividualCategoryForm
 from flask import Flask, render_template, request, redirect, url_for, flash
-from .database import db, Category, Main_List
+from .database import db, Category, Itemtable
 
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -34,12 +34,12 @@ def viewAddCategory():
             except:
                 return "Error"
         else:
-            itemList = Main_List.query.filter_by(author=current_user).all()
+            itemList = Itemtable.query.filter_by(author=current_user).all()
             categoryList = Category.query.filter_by(author=current_user).all()
             return render_template("category.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList)
 
     else:
-        itemList = Main_List.query.filter_by(author=current_user).all()
+        itemList = Itemtable.query.filter_by(author=current_user).all()
         categoryList = Category.query.filter_by(author=current_user).all()
         next_page = request.args.get('next')
         if next_page == 'category':
