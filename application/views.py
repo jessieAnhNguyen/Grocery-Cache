@@ -1,7 +1,7 @@
 from application import app, db
 from .forms import IndividualItemForm, IndividualCategoryForm
 from flask import Flask, render_template, request, redirect, url_for, flash
-from .database import Itemtable, Category
+from .database import Itemtable, Category,jointable
 
 from flask_login import login_user, current_user, logout_user, login_required
 
