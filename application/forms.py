@@ -34,6 +34,7 @@ class IndividualItemForm(FlaskForm):
         NumberRange(
             min=0, message="Quantity can't be negative"),
     ])
+    
     category = QuerySelectMultipleField(u'Categories',
                                 allow_blank=True,
                                 query_factory=category_choices)

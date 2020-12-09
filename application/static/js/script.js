@@ -15,6 +15,16 @@ $(window).on('load',function(){
     }else{
         $('#staticBackdrop').modal('hide');
     }
+
+    if($('#categoryOptions').length>0){
+        $("#categoryOptions option").each(function()
+            {
+                var toChange = $(this).text();
+                var toReplaceWith = toChange.split(":")[1];
+                $(this).text(toReplaceWith);
+                // Add $(this).val() to your list
+            });
+    }
 });
 
 

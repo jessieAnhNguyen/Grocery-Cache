@@ -12,7 +12,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">SIGN UP</h5>
             </div>
-            <form method="POST" action="/register">
+            <form method="POST" action="{{ url_for('register') }}">
 
                 <div class="modal-body">
                     {{form.csrf_token}}
