@@ -17,15 +17,7 @@ def viewAddItems():
     if request.method == "POST":
         if mainForm.is_submitted() and mainForm.validate():
             item_name = request.form["item_name"]
-            category = request.form["category"]
-            # categories = request.form["categories"]
-          
-            print("Fuc!")
-
            
-
-            
-
             quantity = request.form["quantity"]
             budget = request.form["budget"]
             urgency_level = request.form["urgency_level"]
@@ -48,13 +40,13 @@ def viewAddItems():
                 db.session.commit()
                 next_page = request.args.get('next')
 
-
-                for value in mainForm.category.data:
-                    # print(str(value).split(":"))
-                    categoryIdFound = str(value).split(":")[0]
-                    categoryToAddTo = Category.query.filter_by(categoryid = categoryIdFound).first()
-                    categoryToAddTo.items.append(new_item)
-                    db.session.commit()
+                if(mainForm.category):
+                    for value in mainForm.category.data:
+                        # print(str(value).split(":"))
+                        categoryIdFound = str(value).split(":")[0]
+                        categoryToAddTo = Category.query.filter_by(categoryid = categoryIdFound).first()
+                        categoryToAddTo.items.append(new_item)
+                        db.session.commit()
                 return redirect(url_for("viewAddItems",next=next_page)) if next_page else redirect(url_for("viewAddItems"))
             except:
                 return "Error"
@@ -92,6 +84,15 @@ def update(id):
             item_to_update.notes = request.form["notes"]
             try:
                 # update to the database
+
+                if(mainForm.category):
+                    for value in mainForm.category.data:
+                        # print(str(value).split(":"))
+                        categoryIdFound = str(value).split(":")[0]
+                        categoryToAddTo = Category.query.filter_by(categoryid = categoryIdFound).first()
+                        categoryToAddTo.items.append(item_to_update)
+                        db.session.commit()
+
                 db.session.commit()
                 return redirect(url_for("viewAddItems"))
             except:

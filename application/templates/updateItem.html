@@ -33,6 +33,16 @@
             <li style="color:red">{{error}}</li>
             {%endfor%}
         </ul>
+
+        <p>
+            {{form.category.label}}<br />
+            {{form.category}}
+        </p>
+        <ul>
+            {%for error in form.category.errors%}
+            <li style="color:red">{{error}}</li>
+            {%endfor%}
+        </ul>
         <p>
             {{form.urgency_level.label}}<br />
             {{form.urgency_level(value=item_to_update.urgency_level)}}
