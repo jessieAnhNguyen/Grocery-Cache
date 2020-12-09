@@ -52,6 +52,14 @@
     float: right;
 }
 
+.newCategory{
+    background-color: #FFC875;
+    color: white;
+    border-radius: 16px;
+    border-color: #707070;
+    border-width: 1px;
+}
+
 #addItem{
     background-color: #FFC875;
     color: white;
