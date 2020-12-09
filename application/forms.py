@@ -5,14 +5,25 @@ from wtforms import (
     SubmitField,
     IntegerField,
     FloatField,
-    BooleanField
+    BooleanField,
+    SelectField
 )
 
+from application import  db
+
+
+from wtforms.ext.sqlalchemy.fields import QuerySelectField,QuerySelectMultipleField
+
 from wtforms.validators import DataRequired, Email, Length, EqualTo, NumberRange, ValidationError
-from .database import User
+from .database import User,Category
 
-# Form to add/update an item in main_list
+from flask_login import login_user, current_user, logout_user, login_required
 
+
+# Form to add/update an item in Itemtable
+@login_required
+def category_choices():      
+    return db.session.query(Category).filter_by(author=current_user).all()
 
 class IndividualItemForm(FlaskForm):
     item_name = StringField("Item Name", validators=[
@@ -23,9 +34,10 @@ class IndividualItemForm(FlaskForm):
         NumberRange(
             min=0, message="Quantity can't be negative"),
     ])
-    category = StringField("Category", validators=[
-        Length(max=200, message="Category must be less than 200 characters"),
-    ])
+    category = QuerySelectMultipleField(u'Categories',
+                                allow_blank=True,
+                                query_factory=category_choices)
+
     budget = FloatField("Budget (in USD)", validators=[NumberRange(
         min=0, message="Budget can't be negative"), ])
     urgency_level = IntegerField("Urgency Level", validators=[NumberRange(

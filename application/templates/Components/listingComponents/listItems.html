@@ -7,8 +7,8 @@
         <ul class="list-group list-group-flush">
             {%for items in itemList%}
             <li class="list-group-item">{{items.item_name}}
-                <a href="/items/update/{{items.item_ID}}" class="btn btn-outline-secondary btn-sm">Update</a>
-                <a href="/items/delete/{{items.item_ID}}" class="btn btn-outline-danger btn-sm">Delete</a>
+                <a href="/items/update/{{items.itemid}}" class="btn btn-outline-secondary btn-sm">Update</a>
+                <a href="/items/delete/{{items.itemid}}" class="btn btn-outline-danger btn-sm">Delete</a>
             </li>
             {%endfor%}
            
