@@ -50,6 +50,12 @@ def viewAddItems():
                 return redirect(url_for("viewAddItems",next=next_page)) if next_page else redirect(url_for("viewAddItems"))
             except:
                 return "Error"
+        elif(not mainForm.validate()):
+            print("Invalid")
+            itemList = Itemtable.query.filter_by(author=current_user).all()
+            categoryList = Category.query.filter_by(author=current_user).all()
+            return render_template("items.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList, invalidForm = True)
+
         else:
             itemList = Itemtable.query.filter_by(author=current_user).all()
             categoryList = Category.query.filter_by(author=current_user).all()
@@ -87,7 +93,7 @@ def update(id):
 
                 if(mainForm.category):
                     for value in mainForm.category.data:
-                        # print(str(value).split(":"))
+                        # print(str(value).split(""))
                         categoryIdFound = str(value).split(":")[0]
                         categoryToAddTo = Category.query.filter_by(categoryid = categoryIdFound).first()
                         categoryToAddTo.items.append(item_to_update)

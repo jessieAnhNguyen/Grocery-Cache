@@ -13,6 +13,11 @@
 
 {% include "./Components/listingComponents/listitems.html" %}
 
+{%if invalidForm%}
+<div id="invalidForm">The form was invalid. Please try again.</div>
+{%endif%}
+
+
 {% endblock %}
 
 {% block page_content %}
