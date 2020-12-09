@@ -21,7 +21,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
             </div>
-            <form method="POST" action="/login">
+            <form method="POST" action="{{ url_for('login') }}">
 
                 <div class="modal-body">
                     {{form.csrf_token}}

@@ -57,6 +57,9 @@
                         <li style="color:red">{{error}}</li>
                         {%endfor%}
                     </ul>
+                    <button type="button" data-toggle="modal" data-target="#categoryModal">
+                        + New Category
+                    </button>
                     <p>
                         {{form.budget.label}}<br />
                         {{form.budget}}
@@ -87,6 +90,52 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     {{form.submit}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Category option -->
+<div class="modal fade" id="categoryModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">ADD CATEGORY</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{url_for('viewAddCategory',next='category')}}">
+
+                <div class="modal-body">
+                    {{cform.csrf_token}}
+                    <p>
+                        {{cform.category_name.label}}<br />
+                        {{cform.category_name}}
+                    </p>
+                    <ul>
+                        {%for error in cform.category_name.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+                    <p>
+                        {{cform.description.label}}<br />
+                        {{cform.description}}
+                    </p>
+                    <ul>
+                        {%for error in cform.description.errors%}
+                        <li style="color:red">{{error}}</li>
+                        {%endfor%}
+                    </ul>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{cform.submit}}
                 </div>
             </form>
         </div>
