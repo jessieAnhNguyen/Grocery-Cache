@@ -40,7 +40,7 @@ class Category(db.Model):
 
     # Create a funcion to return a string when we add something
     def __repr__(self):
-        return self.category_name
+        return str(self.categoryid) + ":" +self.category_name
 
 
 

@@ -49,11 +49,11 @@
                         {%endfor%}
                     </ul>
                     <p>
-                        {{form.categories.label}}<br />
+                        {{form.category.label}}<br />
                         {{form.categories}}
                     </p>
                     <ul>
-                        {%for error in form.categories.errors%}
+                        {%for error in form.category.errors%}
                         <li style="color:red">{{error}}</li>
                         {%endfor%}
                     </ul>

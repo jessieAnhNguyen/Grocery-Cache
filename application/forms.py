@@ -34,12 +34,8 @@ class IndividualItemForm(FlaskForm):
         NumberRange(
             min=0, message="Quantity can't be negative"),
     ])
-    categories = StringField("Category", validators=[
-        Length(max=200, message="Category must be less than 200 characters"),
-    ])
-    # categoryList = Category.query.filter_by(author=current_user).all()
-
-    category = QuerySelectMultipleField(u'Categories haha',      
+    category = QuerySelectMultipleField(u'Categories',
+                                allow_blank=True,
                                 query_factory=category_choices)
 
     budget = FloatField("Budget (in USD)", validators=[NumberRange(
