@@ -19,7 +19,9 @@ $(window).on('load',function(){
     if($('#categoryOptions').length>0){
         $("#categoryOptions option").each(function()
             {
-                console.log($(this).val());
+                var toChange = $(this).text();
+                var toReplaceWith = toChange.split(":")[1];
+                $(this).text(toReplaceWith);
                 // Add $(this).val() to your list
             });
     }
