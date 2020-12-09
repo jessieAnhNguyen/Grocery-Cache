@@ -29,22 +29,22 @@ class IndividualItemForm(FlaskForm):
     item_name = StringField("Item Name", validators=[
         DataRequired(),
         Length(max=200, message="Item name must be less than 200 characters"),
-    ])
+    ], render_kw={"placeholder": "Salt"})
     quantity = FloatField("Quantity", validators=[
         NumberRange(
             min=0, message="Quantity can't be negative"),
-    ])
+    ], render_kw={"placeholder": "1"})
     category = QuerySelectMultipleField(u'Categories',
                                 allow_blank=True,
                                 query_factory=category_choices)
 
     budget = FloatField("Budget (in USD)", validators=[NumberRange(
-        min=0, message="Budget can't be negative"), ])
+        min=0, message="Budget can't be negative"), ], render_kw={"placeholder": "3.99"})
     urgency_level = IntegerField("Urgency Level", validators=[NumberRange(
-        min=1, max=5, message="Urgency level must be between 1-5"), ])
+        min=1, max=5, message="Urgency level must be between 1-5"), ], render_kw={"placeholder": "3"})
     notes = StringField("Other notes", validators=[
         Length(max=500, message="Notes must be less than 500 characters"),
-    ])
+    ], render_kw={"placeholder": "Kosher"})
     submit = SubmitField("Submit")
 
 # Form to add/update a category
@@ -54,10 +54,10 @@ class IndividualCategoryForm(FlaskForm):
     category_name = StringField("Category Name", validators=[DataRequired(),
                                                              Length(
                                                                  max=200, message="Category must be less than 200 characters"),
-                                                             ])
+                                                             ], render_kw={"placeholder": "Condiments"})
     description = StringField("Description of category", validators=[
         Length(max=1000, message="Description must be less than 1000 characters"),
-    ])
+    ], render_kw={"placeholder": "Asian spices, Italian seasonings...."})
     submit = SubmitField("Submit")
 
 
