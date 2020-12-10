@@ -25,6 +25,8 @@ from flask_login import login_user, current_user, logout_user, login_required
 def category_choices():      
     return db.session.query(Category).filter_by(author=current_user).all()
 
+urgency_levels = [1, 2, 3, 4, 5]
+
 class IndividualItemForm(FlaskForm):
     item_name = StringField("Item Name", validators=[
         DataRequired(),
@@ -40,8 +42,12 @@ class IndividualItemForm(FlaskForm):
 
     budget = FloatField("Budget (in USD)", validators=[NumberRange(
         min=0, message="Budget can't be negative"), ], render_kw={"placeholder": "3.99"})
-    urgency_level = IntegerField("Urgency Level", validators=[NumberRange(
-        min=1, max=5, message="Urgency level must be between 1-5"), ], render_kw={"placeholder": "3"})
+    #urgency_level = IntegerField("Urgency Level", validators=[NumberRange(
+        #min=1, max=5, message="Urgency level must be between 1-5"), ], render_kw={"placeholder": "3"})
+    
+    urgency_level = SelectField(u'Urgency Level',
+                                choices=urgency_levels)
+
     notes = StringField("Other notes", validators=[
         Length(max=500, message="Notes must be less than 500 characters"),
     ], render_kw={"placeholder": "Kosher"})
