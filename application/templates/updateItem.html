@@ -36,7 +36,7 @@
 
         <p>
             {{form.category.label}}<br />
-            {{form.category}}
+            <div id = "categoryOptions">{{form.category}}</div>
         </p>
         <ul>
             {%for error in form.category.errors%}
