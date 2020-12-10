@@ -9,23 +9,25 @@ from wtforms import (
     SelectField
 )
 
-from application import  db
+from application import db
 
 
-from wtforms.ext.sqlalchemy.fields import QuerySelectField,QuerySelectMultipleField
+from wtforms.ext.sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 
 from wtforms.validators import DataRequired, Email, Length, EqualTo, NumberRange, ValidationError
-from .database import User,Category
+from .database import User, Category
 
 from flask_login import login_user, current_user, logout_user, login_required
 
 
 # Form to add/update an item in Itemtable
 @login_required
-def category_choices():      
+def category_choices():
     return db.session.query(Category).filter_by(author=current_user).all()
 
+
 urgency_levels = [1, 2, 3, 4, 5]
+
 
 class IndividualItemForm(FlaskForm):
     item_name = StringField("Item Name", validators=[
@@ -37,14 +39,14 @@ class IndividualItemForm(FlaskForm):
             min=0, message="Quantity can't be negative"),
     ], render_kw={"placeholder": "1"})
     category = QuerySelectMultipleField(u'Categories',
-                                allow_blank=True,
-                                query_factory=category_choices)
+                                        allow_blank=True,
+                                        query_factory=category_choices)
 
     budget = FloatField("Budget (in USD)", validators=[NumberRange(
         min=0, message="Budget can't be negative"), ], render_kw={"placeholder": "3.99"})
-    #urgency_level = IntegerField("Urgency Level", validators=[NumberRange(
-        #min=1, max=5, message="Urgency level must be between 1-5"), ], render_kw={"placeholder": "3"})
-    
+    # urgency_level = IntegerField("Urgency Level", validators=[NumberRange(
+    # min=1, max=5, message="Urgency level must be between 1-5"), ], render_kw={"placeholder": "3"})
+
     urgency_level = SelectField(u'Urgency Level',
                                 choices=urgency_levels)
 
@@ -72,12 +74,13 @@ class IndividualCategoryForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired(),
-                                                             Length(min=1,
-                                                                 max=200, message="Username must be less than 200 characters"),
-                                                             ])
+                                                   Length(min=1,
+                                                          max=200, message="Username must be less than 200 characters"),
+                                                   ])
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = PasswordField("Password", validators=[DataRequired()])
-    confirm_password = PasswordField("Confirm password", validators=[DataRequired(), EqualTo('password')])
+    confirm_password = PasswordField("Confirm password", validators=[
+                                     DataRequired(), EqualTo('password')])
     submit = SubmitField("Sign up")
 
     def validate_username(self, username):
@@ -88,7 +91,8 @@ class RegistrationForm(FlaskForm):
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError('That email already exists.')                                      
+            raise ValidationError('That email already exists.')
+
 
 class LoginForm(FlaskForm):
     email = StringField('Email',

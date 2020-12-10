@@ -1,133 +1,140 @@
 /* CSS for the nav movement */
-#sidebar-wrapper{
-    z-index: 1;
-    position: absolute;
-    width: 4%;
-    height: 100%;
-    overflow-y: hidden;
-    background-color: #FFC875;
-    color: white;
+
+#sidebar-wrapper {
+  z-index: 1;
+  position: absolute;
+  width: 4%;
+  height: 100%;
+  overflow-y: hidden;
+  background-color: #ffc875;
+  color: white;
 }
 
-.sidebarNav{
-    opacity: 0;
-    padding-left: 0;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+.sidebarNav {
+  opacity: 0;
+  padding-left: 0;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Main Content */
-#page-content-wrapper{
-    width: 100%;
-    position: absolute;
-    padding-left: 4%;
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding-left: 4%;
 }
 
 /* Change the width of the sidebar to display it */
-#wrapper.menuDisplayed #sidebar-wrapper{
-    width: 10%;
+#wrapper.menuDisplayed #sidebar-wrapper {
+  width: 10%;
 }
 
-#wrapper.menuDisplayed #page-content-wrapper{
-    padding-left: 10%;
+#wrapper.menuDisplayed #page-content-wrapper {
+  padding-left: 10%;
 }
 
-#wrapper.menuDisplayed .sidebarNav{
-    opacity: 1;
+#wrapper.menuDisplayed .sidebarNav {
+  opacity: 1;
 }
 /* Till Here */
 
-
-.title{
-    width: 20%;
-    margin: 0;
+.title {
+  width: 20%;
+  margin: 0;
 }
 /* Button Design */
-.buttons{
-    height: 32px;
-    margin: 4px 0;
+.buttons {
+  height: 32px;
+  margin: 4px 0;
 }
 
-.addButtons{
-    float: right;
+.addButtons {
+  float: right;
 }
 
-#addItem{
-    background-color: #FFC875;
-    color: white;
-
-    border-radius: 16px;
-    border-color: #707070;
-    border-width: 1px;
-   
-    padding: 4px 16px;
-    width: 128px;
+.newCategory {
+  background-color: #ffc875;
+  color: white;
+  border-radius: 16px;
+  border-color: #707070;
+  border-width: 1px;
 }
 
-#addCategory{
-    background-color: white;
-    color: #707070;
+#addItem {
+  background-color: #ffc875;
+  color: white;
 
-    border-radius: 16px;
-    border-color: #707070;
-    border-width: 1px;
-    
-    padding: 4px 16px;
-    width: 128px;
-}
-.anchor-see-more{
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
-}
-.see-more-btn{
-    background-color:   #FFC875;
-    height: 16px;
-    width: 64px;
-    border: 1px solid black;
-    border-radius: 16px;
+  border-radius: 16px;
+  border-color: #707070;
+  border-width: 1px;
 
-    margin:0 auto;
+  padding: 4px 16px;
+  width: 128px;
 }
 
-.navButtons{
-    color:white;
-    background-color: #E6C798;
+#addCategory {
+  background-color: white;
+  color: #707070;
 
-    border:0;
-    border-radius: 16px;
+  border-radius: 16px;
+  border-color: #707070;
+  border-width: 1px;
 
-    padding: 5px 0;
-    
-    width: 100%;
+  padding: 4px 16px;
+  width: 128px;
+}
+.anchor-see-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+.see-more-btn {
+  background-color: #ffc875;
+  height: 16px;
+  width: 64px;
+  border: 1px solid black;
+  border-radius: 16px;
+
+  margin: 0 auto;
 }
 
+.navButtons {
+  color: white;
+  background-color: #e6c798;
 
-.all-items{
-    margin:0 2%;
+  border: 0;
+  border-radius: 16px;
+
+  padding: 5px 0;
+
+  width: 100%;
 }
 
-.card{
-    margin-top: 2%;
-    border:1px;
-    border-color: rgba(160, 26, 26, 0);
-    border-bottom: 0px solid black;
+.all-items {
+  margin: 0 2%;
 }
 
-.card .card-header{
-    background-color: #FFC875;
-    border: 1px solid black;
-    color: white;
+.card {
+  margin-top: 2%;
+  border: 1px;
+  border-color: rgba(160, 26, 26, 0);
+  border-bottom: 0px solid black;
 }
 
-.card .list-group{
-    margin-right: 16px;
-    border: 1px solid black;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-top: 0 solid black;
+.card .card-header {
+  background-color: #ffc875;
+  border: 1px solid black;
+  color: white;
 }
 
-.categoryList{
-    margin-top: 2%;
+.card .list-group {
+  margin-right: 16px;
+  border: 1px solid black;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: 0 solid black;
+}
+
+.categoryList {
+  margin-top: 2%;
 }

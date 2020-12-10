@@ -42,7 +42,7 @@ def viewAddItems():
 
                 if(mainForm.category):
                     for value in mainForm.category.data:
-                        # print(str(value).split(":"))
+                        print(value)
                         categoryIdFound = str(value).split(":")[0]
                         categoryToAddTo = Category.query.filter_by(categoryid = categoryIdFound).first()
                         categoryToAddTo.items.append(new_item)
@@ -90,10 +90,12 @@ def update(id):
             item_to_update.notes = request.form["notes"]
             try:
                 # update to the database
+                item_to_update.jointablerelation=[]
+                db.session.commit()
 
                 if(mainForm.category):
                     for value in mainForm.category.data:
-                        # print(str(value).split(""))
+                        print("Here")
                         categoryIdFound = str(value).split(":")[0]
                         categoryToAddTo = Category.query.filter_by(categoryid = categoryIdFound).first()
                         categoryToAddTo.items.append(item_to_update)
