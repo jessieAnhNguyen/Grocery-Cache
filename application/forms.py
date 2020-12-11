@@ -37,13 +37,13 @@ class IndividualItemForm(FlaskForm):
     quantity = FloatField("Quantity", validators=[
         NumberRange(
             min=0, message="Quantity can't be negative"),
-    ], render_kw={"placeholder": "1"})
+    ], render_kw={"placeholder": "1"}, default=1)
     category = QuerySelectMultipleField(u'Categories',
                                         allow_blank=True,
                                         query_factory=category_choices)
 
     budget = FloatField("Budget (in USD)", validators=[NumberRange(
-        min=0, message="Budget can't be negative"), ], render_kw={"placeholder": "3.99"})
+        min=0, message="Budget can't be negative"), ], render_kw={"placeholder": "3.99"}, default=1)
     # urgency_level = IntegerField("Urgency Level", validators=[NumberRange(
     # min=1, max=5, message="Urgency level must be between 1-5"), ], render_kw={"placeholder": "3"})
 
