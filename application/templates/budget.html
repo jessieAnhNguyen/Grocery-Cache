@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Budget{% endblock %}
+
+
+{%block respective_add_buttons%}
+
+{%endblock%}
+
+{% block page_content %}
+<section class='budget'>
+    {%if itemList|length%}
+    <div class="card">
+        <div class="card-header">
+            Budget
+            {{total}}
+        </div>       
+       
+    </div>
+    {%else%}
+    <div class="card">
+        <div class="card-header">
+            No Items
+        </div> 
+    </div>
+    {%endif%}
+   
+
+</section>
+
+{% endblock %}
+
