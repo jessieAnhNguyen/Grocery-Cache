@@ -4,7 +4,7 @@
 {% block title %} Update Category{% endblock %}
 {%block content%}
 <div class="container">
-    <form method="POST" action="/category/update/{{category_to_update.categoryid}}">
+    <form method="POST" action="/GroceryCache/category/update/{{category_to_update.categoryid}}">
         {{form.csrf_token}}
         <p>
             {{form.category_name.label}}<br />
