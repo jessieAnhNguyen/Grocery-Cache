@@ -36,6 +36,7 @@ from application import categoryViews
 from application import itemsViews
 from application import views
 from application import authViews
+from application import budgetViews
 
 @app.errorhandler(404)
 def page_not_found(e):
