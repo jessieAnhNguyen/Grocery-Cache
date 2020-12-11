@@ -33,12 +33,12 @@
 
             <a href="#" id="menu-toggler">  </a>
             <ul class="sidebarNav">
-                <a href="/">Grocery <br />Cache</a> 
+                <a href="/GroceryCache/">Grocery <br />Cache</a> 
                 <hr />
                 <nav class="nav flex-column">
-                    <a class="nav-link" href="/items"><button class="navButtons">Items</button></a>
-                    <a class="nav-link" href="/category"><button class="navButtons">Category</button></a>
-                    <a class="nav-link" href="budget"><button class="navButtons">Budget</button></a>
+                    <a class="nav-link" href="/GroceryCache/items"><button class="navButtons">Items</button></a>
+                    <a class="nav-link" href="/GroceryCache/category"><button class="navButtons">Category</button></a>
+                    <a class="nav-link" href="/GroceryCache/budget"><button class="navButtons">Budget</button></a>
                     {% if current_user.is_authenticated %}
                     <a class="nav-link" href="{{ url_for('logout') }}"><button class="navButtons">Logout</button></a>
                     {% endif %}
