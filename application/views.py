@@ -9,7 +9,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 # Add and view item on app.Itemtable
 
 
-@app.route("/GroceryCache/", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
     mainForm = IndividualItemForm()
