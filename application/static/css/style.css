@@ -10,6 +10,16 @@
   color: white;
 }
 
+#nav-title{
+  color: white;
+  text-decoration: none;
+  font-size: xx-large;
+}
+
+a{
+  text-decoration: none;
+}
+
 .sidebarNav {
   opacity: 0;
   padding-left: 0;

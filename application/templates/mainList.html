@@ -9,12 +9,12 @@
 
 
 {%block list_of_items%}
-{% include "./Components/listingComponents/listitems.html" %}
+{% include "./ItemListing.html" %}
 <a href="{{ url_for('viewAddItems') }}" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
 {% endblock %}
 
 {% block categoryList %}
-{% include "./Components/listingComponents/listCategories.html" %}
+{% include "./listCategories.html" %}
 
 <a href="{{ url_for('viewAddCategory') }}" class='anchor-see-more'><button type="button" class="see-more-btn"></button></a>
 {% endblock %}

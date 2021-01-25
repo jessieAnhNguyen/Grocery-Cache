@@ -42,7 +42,6 @@ def viewAddItems():
 
                 if(mainForm.category):
                     for value in mainForm.category.data:
-                        print(value)
                         categoryIdFound = str(value).split(":")[0]
                         categoryToAddTo = Category.query.filter_by(categoryid = categoryIdFound).first()
                         categoryToAddTo.items.append(new_item)
@@ -51,7 +50,6 @@ def viewAddItems():
             except:
                 return "Error"
         elif(not mainForm.validate()):
-            print("Invalid")
             itemList = Itemtable.query.filter_by(author=current_user).all()
             categoryList = Category.query.filter_by(author=current_user).all()
             return render_template("items.html", form=mainForm, cform=categoryForm, itemList=itemList, categoryList=categoryList, invalidForm = True)
