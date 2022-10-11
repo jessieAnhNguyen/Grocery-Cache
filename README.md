@@ -1,7 +1,6 @@
 # Grocery Cache
 A web app that allows users to manage their grocery list and budget expenses efficiently and effectively.  
-
-You can try our app at: https://amanshrestha.digitalscholar.rochester.edu/GroceryCache
+Also allows for categorizing based on recipees
 
 ## Information for collaborators:
 
